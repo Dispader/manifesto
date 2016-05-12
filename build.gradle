@@ -6,13 +6,12 @@ apply plugin: 'war'
 
 class Version {
 
-    static getImplementation() {
-        org.ajoberstar.grgit.Grgit.open().describe { } ?: ''
+    private static getGit() {
+        try { org.ajoberstar.grgit.Grgit.open() } catch(Exception ex) { }
     }
 
-    static getSpecification() {
-        Version.implementation?.split(/-\d/)[0] ?: ''
-    }
+    static getImplementation() { git?.describe { } ?: '' }
+    static getSpecification() { implementation?.split(/-\d/)[0] ?: '' }
 
 }
 
