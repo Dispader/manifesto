@@ -4,59 +4,44 @@ buildscript {
 }
 apply plugin: 'war'
 
-class Manifest {
+class Version {
 
-    static getImplementation_version() {
-        org.ajoberstar.grgit.Grgit.open().describe { }
+    static getImplementation() {
+        org.ajoberstar.grgit.Grgit.open().describe { } ?: ''
+    }
+
+    static getSpecification() {
+        Version.implementation?.split(/-\d/)[0] ?: ''
     }
 
 }
 
 task manifestJar(type: Jar) {
-    // TODO: FIX failure when no-tag executing `gradle tasks`
     // TODO: HANDLE error on non-Git projects
-    // TODO: HANDLE error on untagged projects
     // TODO: ADD placeholder for 'Specification-Vendor'
     // TODO: ADD placeholder for 'Implementation-Vendor'
     // TODO: ADD placeholder for 'Implementation-Vendor-Id'
     // TODO: ADD placeholder for 'Implementation-URL'
-    ext.specification_version = { ->
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'describe', '--tags', '--abbrev=0'
-            standardOutput = stdout
-        }
-        return stdout.toString().trim()
-    }
     manifest {
         attributes( 'Specification-Title': project.name,
-                    'Specification-Version': ext.specification_version(),
+                    'Specification-Version': Version.specification,
                     'Implementation-Title': project.name,
-                    'Implementation-Version': Manifest.implementation_version,
+                    'Implementation-Version': Version.implementation,
                     'Implementation-Timestamp': new Date() )
     }
 }
 
 task manifestWar(type: War) {
     // TODO: HANDLE error on non-Git projects
-    // TODO: HANDLE error on untagged projects
     // TODO: ADD placeholder for 'Specification-Vendor'
     // TODO: ADD placeholder for 'Implementation-Vendor'
     // TODO: ADD placeholder for 'Implementation-Vendor-Id'
     // TODO: ADD placeholder for 'Implementation-URL'
-    ext.specification_version = { ->
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'describe', '--tags', '--abbrev=0'
-            standardOutput = stdout
-        }
-        return stdout.toString().trim()
-    }
     manifest {
         attributes( 'Specification-Title': project.name,
-                    'Specification-Version': ext.specification_version(),
+                    'Specification-Version': Version.specification,
                     'Implementation-Title': project.name,
-                    'Implementation-Version': Manifest.implementation_version,
+                    'Implementation-Version': Version.implementation,
                     'Implementation-Timestamp': new Date() )
     }
 
