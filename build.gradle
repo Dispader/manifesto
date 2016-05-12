@@ -1,4 +1,16 @@
+buildscript {
+    repositories.jcenter()
+    dependencies.classpath 'org.ajoberstar:grgit:1.7.0'
+}
 apply plugin: 'war'
+
+class Manifest {
+
+    static getImplementation_version() {
+        org.ajoberstar.grgit.Grgit.open().describe { }
+    }
+
+}
 
 task manifestJar(type: Jar) {
     // TODO: HANDLE error on non-Git projects
@@ -15,19 +27,11 @@ task manifestJar(type: Jar) {
         }
         return stdout.toString().trim()
     }
-    ext.implementation_version = { ->
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'describe', '--tags'
-	        standardOutput = stdout
-        }
-        return stdout.toString().trim()
-    }
     manifest {
         attributes( 'Specification-Title': project.name,
                     'Specification-Version': ext.specification_version(),
                     'Implementation-Title': project.name,
-                    'Implementation-Version': ext.implementation_version(),
+                    'Implementation-Version': Manifest.implementation_version,
                     'Implementation-Timestamp': new Date() )
     }
 }
@@ -47,19 +51,11 @@ task manifestWar(type: War) {
         }
         return stdout.toString().trim()
     }
-    ext.implementation_version = { ->
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'describe', '--tags'
-	        standardOutput = stdout
-        }
-        return stdout.toString().trim()
-    }
     manifest {
         attributes( 'Specification-Title': project.name,
                     'Specification-Version': ext.specification_version(),
                     'Implementation-Title': project.name,
-                    'Implementation-Version': ext.implementation_version(),
+                    'Implementation-Version': Manifest.implementation_version,
                     'Implementation-Timestamp': new Date() )
     }
 
