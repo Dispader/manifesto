@@ -13,6 +13,7 @@ class Manifest {
 }
 
 task manifestJar(type: Jar) {
+    // TODO: FIX failure when no-tag executing `gradle tasks`
     // TODO: HANDLE error on non-Git projects
     // TODO: HANDLE error on untagged projects
     // TODO: ADD placeholder for 'Specification-Vendor'
