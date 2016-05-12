@@ -17,11 +17,6 @@ class Version {
 }
 
 task manifestJar(type: Jar) {
-    // TODO: HANDLE error on non-Git projects
-    // TODO: ADD placeholder for 'Specification-Vendor'
-    // TODO: ADD placeholder for 'Implementation-Vendor'
-    // TODO: ADD placeholder for 'Implementation-Vendor-Id'
-    // TODO: ADD placeholder for 'Implementation-URL'
     manifest {
         attributes( 'Specification-Title': project.name,
                     'Specification-Version': Version.specification,
@@ -32,11 +27,6 @@ task manifestJar(type: Jar) {
 }
 
 task manifestWar(type: War) {
-    // TODO: HANDLE error on non-Git projects
-    // TODO: ADD placeholder for 'Specification-Vendor'
-    // TODO: ADD placeholder for 'Implementation-Vendor'
-    // TODO: ADD placeholder for 'Implementation-Vendor-Id'
-    // TODO: ADD placeholder for 'Implementation-URL'
     manifest {
         attributes( 'Specification-Title': project.name,
                     'Specification-Version': Version.specification,
