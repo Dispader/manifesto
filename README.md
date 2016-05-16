@@ -6,5 +6,6 @@ artifacts based on implied (project/Git) status.
 ## usage
 
 * `apply plugin: "<path_to_plugin>"`
-  * `./gradlew jar`
-  * `./gradlew war`
+  * `./gradlew manifesto` - test
+  * `./gradlew manifestJar` - create JAr with populated manifest
+  * `./gradlew manifestWar` - create WAr with populated manifest

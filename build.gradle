@@ -3,6 +3,7 @@ buildscript {
     dependencies.classpath 'org.ajoberstar:grgit:1.7.0'
 }
 apply plugin: 'war'
+apply plugin: ManifestoPlugin
 
 class Version {
 
@@ -35,3 +36,36 @@ task manifestWar(type: War) {
     }
 
 }
+
+class ManifestoPluginExtension {
+    String vendor, vendor_id, url
+}
+
+class ManifestoPlugin implements Plugin<Project> {
+    void apply(Project project) {
+        project.extensions.create("manifesto", ManifestoPluginExtension)
+        project.task('hello') << {
+            println "Specification-Title: ${project.name}"
+            println "Specification-Version: ${Version.specification}"
+            if ( project.manifesto.vendor ) {
+                println "Specification-Vendor: ${project.manifesto.vendor}"
+            }
+            println "Implementation-Title: ${project.name}"
+            if ( project.manifesto.vendor_id ) {
+                println "Implementation-Vendor-Id: ${project.manifesto.vendor_id}"
+            }
+            println "Implementation-Version: ${Version.implementation}"
+            if ( project.manifesto.vendor ) {
+                println "Implementation-Vendor: ${project.manifesto.vendor}"
+            }
+            if ( project.manifesto.url ) {
+                println "Implementation-URL: ${project.manifesto.url}"
+            }
+            println "Implementation-Timestamp: ${new Date()}"
+        }
+    }
+}
+
+manifesto.vendor = 'Jake Gage'
+manifesto.vendor_id = 'com.github.dispader.manifesto'
+manifesto.url = 'https://github.com/Dispader/manifesto'
