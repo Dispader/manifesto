@@ -1,71 +1,28 @@
-buildscript {
-    repositories.jcenter()
-    dependencies.classpath 'org.ajoberstar:grgit:1.7.0'
+plugins {
+    id 'groovy'
+    id 'maven'
+    id 'build-announcements'
 }
-apply plugin: 'war'
-apply plugin: ManifestoPlugin
+//apply plugin: 'war'
 
-class Version {
-
-    private static getGit() {
-        try { org.ajoberstar.grgit.Grgit.open() } catch(Exception ex) { }
-    }
-
-    static getImplementation() { git?.describe { } ?: '' }
-    static getSpecification() { implementation?.split(/-\d/)[0] ?: '' }
-
-}
-
-task manifestJar(type: Jar) {
-    manifest {
-        attributes( 'Specification-Title': project.name,
-                    'Specification-Version': Version.specification,
-                    'Implementation-Title': project.name,
-                    'Implementation-Version': Version.implementation,
-                    'Implementation-Timestamp': new Date() )
+repositories.jcenter()
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'org.ajoberstar:grgit:1.7.0'
+	testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+        exclude module: "groovy-all"
     }
 }
 
-task manifestWar(type: War) {
-    manifest {
-        attributes( 'Specification-Title': project.name,
-                    'Specification-Version': Version.specification,
-                    'Implementation-Title': project.name,
-                    'Implementation-Version': Version.implementation,
-                    'Implementation-Timestamp': new Date() )
-    }
-
-}
-
-class ManifestoPluginExtension {
-    String vendor, vendor_id, url
-}
-
-class ManifestoPlugin implements Plugin<Project> {
-    void apply(Project project) {
-        project.extensions.create("manifesto", ManifestoPluginExtension)
-        project.task('hello') << {
-            println "Specification-Title: ${project.name}"
-            println "Specification-Version: ${Version.specification}"
-            if ( project.manifesto.vendor ) {
-                println "Specification-Vendor: ${project.manifesto.vendor}"
-            }
-            println "Implementation-Title: ${project.name}"
-            if ( project.manifesto.vendor_id ) {
-                println "Implementation-Vendor-Id: ${project.manifesto.vendor_id}"
-            }
-            println "Implementation-Version: ${Version.implementation}"
-            if ( project.manifesto.vendor ) {
-                println "Implementation-Vendor: ${project.manifesto.vendor}"
-            }
-            if ( project.manifesto.url ) {
-                println "Implementation-URL: ${project.manifesto.url}"
-            }
-            println "Implementation-Timestamp: ${new Date()}"
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo'))
         }
     }
 }
 
-manifesto.vendor = 'Jake Gage'
-manifesto.vendor_id = 'com.github.dispader.manifesto'
-manifesto.url = 'https://github.com/Dispader/manifesto'
+// manifesto.vendor = 'Jake Gage'
+// manifesto.vendor_id = 'com.github.dispader.manifesto'
+// manifesto.url = 'https://github.com/Dispader/manifesto'

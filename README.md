@@ -5,7 +5,10 @@ artifacts based on implied (project/Git) status.
 
 ## usage
 
-* `apply plugin: "<path_to_plugin>"`
-  * `./gradlew manifesto` - test
-  * `./gradlew manifestJar` - create JAr with populated manifest
-  * `./gradlew manifestWar` - create WAr with populated manifest
+* `./gradlew test` — run tests
+* `./gradlew jar` — package plugin
+* `./gradlew uploadArchives` — store packaged JAr in temporary repository
+  * in `../repo` (may be used for local testing)
+  * TODO: remove
+* `apply plugin: "<path_to_plugin>"` — applies plugin to project
+  * adds Manifest information to JAr and WAr archives produced by plugins
