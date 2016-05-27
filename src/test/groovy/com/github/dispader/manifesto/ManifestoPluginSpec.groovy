@@ -1,5 +1,6 @@
 package com.github.dispader.manifesto
 
+import spock.lang.Shared
 import spock.lang.Specification
 import org.gradle.api.*
 import org.gradle.testfixtures.*
@@ -7,6 +8,11 @@ import org.gradle.testfixtures.*
 class ManifestoPluginSpec extends Specification {
 
     private Project project = ProjectBuilder.builder().build()
+
+    @Shared private def autopopulatedKeys =
+        [ 'Manifest-Version',
+          'Specification-Title', 'Specification-Version',
+          'Implementation-Title', 'Implementation-Version', 'Implementation-Timestamp' ]
 
     def 'adds a "diagnostics" task'() {
         given:
@@ -27,14 +33,9 @@ class ManifestoPluginSpec extends Specification {
             project.pluginManager.apply 'com.github.dispader.manifesto'
             project.pluginManager.apply 'java'
         expect:
-            project.tasks.jar.manifest.attributes.with {
-                containsKey('Manifest-Version')
-                containsKey('Specification-Title')
-                containsKey('Specification-Version')
-                containsKey('Implementation-Title')
-                containsKey('Implementation-Version')
-                containsKey('Implementation-Timestamp')
-            }
+            project.tasks.jar.manifest.attributes.containsKey(key)
+        where:
+            key << autopopulatedKeys
     }
 
     def 'adds "Implementation-Timestamp" to JAr when manifesto loaded after java'() {
@@ -42,14 +43,9 @@ class ManifestoPluginSpec extends Specification {
             project.pluginManager.apply 'java'
             project.pluginManager.apply 'com.github.dispader.manifesto'
         expect:
-            project.tasks.jar.manifest.attributes.with {
-                containsKey('Manifest-Version')
-                containsKey('Specification-Title')
-                containsKey('Specification-Version')
-                containsKey('Implementation-Title')
-                containsKey('Implementation-Version')
-                containsKey('Implementation-Timestamp')
-            }
+            project.tasks.jar.manifest.attributes.containsKey(key)
+        where:
+            key << autopopulatedKeys
     }
 
     def 'adds "Implementation-Timestamp" to JAr when war plugin loaded'() {
@@ -57,22 +53,10 @@ class ManifestoPluginSpec extends Specification {
             project.pluginManager.apply 'war'
             project.pluginManager.apply 'com.github.dispader.manifesto'
         expect:
-            project.tasks.jar.manifest.attributes.with {
-                containsKey('Manifest-Version')
-                containsKey('Specification-Title')
-                containsKey('Specification-Version')
-                containsKey('Implementation-Title')
-                containsKey('Implementation-Version')
-                containsKey('Implementation-Timestamp')
-            }
-            project.tasks.war.manifest.attributes.with {
-                containsKey('Manifest-Version')
-                containsKey('Specification-Title')
-                containsKey('Specification-Version')
-                containsKey('Implementation-Title')
-                containsKey('Implementation-Version')
-                containsKey('Implementation-Timestamp')
-            }
+            project.tasks.jar.manifest.attributes.containsKey(key)
+            project.tasks.war.manifest.attributes.containsKey(key)
+        where:
+            key << autopopulatedKeys
     }
 
 }
