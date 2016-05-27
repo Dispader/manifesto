@@ -33,14 +33,14 @@ class ManifestoPlugin implements Plugin<Project> {
 
         project.plugins.whenPluginAdded { plugin ->
             project.tasks.find { it instanceof Jar }.each { 
-                it.manifest.attributes('Implementation-Timestamp': new Date())
                 it.manifest.attributes('Specification-Title': project.name)
                 it.manifest.attributes('Specification-Version': project.name)
+                it.manifest.attributes('Implementation-Timestamp': new Date())
             }
             project.tasks.find { it instanceof War }.each { 
-                it.manifest.attributes('Implementation-Timestamp': new Date())
                 it.manifest.attributes('Specification-Title': project.name)
                 it.manifest.attributes('Specification-Version': project.name)
+                it.manifest.attributes('Implementation-Timestamp': new Date())
             }
         }
 
