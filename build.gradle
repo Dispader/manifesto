@@ -1,9 +1,10 @@
 plugins {
+    id 'project-report'
+    id 'build-announcements'
     id 'groovy'
     id 'maven'
-    id 'build-announcements'
 }
-//apply plugin: 'war'
+apply from: './gradle/colored-test-output.gradle'
 
 repositories.jcenter()
 dependencies {
@@ -23,6 +24,3 @@ uploadArchives {
     }
 }
 
-// manifesto.vendor = 'Jake Gage'
-// manifesto.vendor_id = 'com.github.dispader.manifesto'
-// manifesto.url = 'https://github.com/Dispader/manifesto'
