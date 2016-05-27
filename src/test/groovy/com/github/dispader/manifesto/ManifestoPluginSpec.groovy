@@ -27,12 +27,14 @@ class ManifestoPluginSpec extends Specification {
             project.pluginManager.apply 'com.github.dispader.manifesto'
             project.pluginManager.apply 'java'
         expect:
-            project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
-            project.tasks.jar.manifest.attributes.containsKey('Specification-Title')
-            project.tasks.jar.manifest.attributes.containsKey('Specification-Version')
-            project.tasks.jar.manifest.attributes.containsKey('Implementation-Title')
-            project.tasks.jar.manifest.attributes.containsKey('Implementation-Version')
-            project.tasks.jar.manifest.attributes.containsKey('Implementation-Timestamp')
+            project.tasks.jar.manifest.attributes.with {
+                containsKey('Manifest-Version')
+                containsKey('Specification-Title')
+                containsKey('Specification-Version')
+                containsKey('Implementation-Title')
+                containsKey('Implementation-Version')
+                containsKey('Implementation-Timestamp')
+            }
     }
 
     def 'adds "Implementation-Timestamp" to JAr when manifesto loaded after java'() {
@@ -40,12 +42,14 @@ class ManifestoPluginSpec extends Specification {
             project.pluginManager.apply 'java'
             project.pluginManager.apply 'com.github.dispader.manifesto'
         expect:
-            project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
-            project.tasks.jar.manifest.attributes.containsKey('Specification-Title')
-            project.tasks.jar.manifest.attributes.containsKey('Specification-Version')
-            project.tasks.jar.manifest.attributes.containsKey('Implementation-Title')
-            project.tasks.jar.manifest.attributes.containsKey('Implementation-Version')
-            project.tasks.jar.manifest.attributes.containsKey('Implementation-Timestamp')
+            project.tasks.jar.manifest.attributes.with {
+                containsKey('Manifest-Version')
+                containsKey('Specification-Title')
+                containsKey('Specification-Version')
+                containsKey('Implementation-Title')
+                containsKey('Implementation-Version')
+                containsKey('Implementation-Timestamp')
+            }
     }
 
     def 'adds "Implementation-Timestamp" to JAr when war plugin loaded'() {
@@ -53,19 +57,22 @@ class ManifestoPluginSpec extends Specification {
             project.pluginManager.apply 'war'
             project.pluginManager.apply 'com.github.dispader.manifesto'
         expect:
-            project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
-            project.tasks.jar.manifest.attributes.containsKey('Specification-Title')
-            project.tasks.jar.manifest.attributes.containsKey('Specification-Version')
-            project.tasks.jar.manifest.attributes.containsKey('Implementation-Title')
-            project.tasks.jar.manifest.attributes.containsKey('Implementation-Version')
-            project.tasks.jar.manifest.attributes.containsKey('Implementation-Timestamp')
-
-            project.tasks.war.manifest.attributes.containsKey('Manifest-Version')
-            project.tasks.war.manifest.attributes.containsKey('Specification-Title')
-            project.tasks.war.manifest.attributes.containsKey('Specification-Version')
-            project.tasks.war.manifest.attributes.containsKey('Implementation-Title')
-            project.tasks.war.manifest.attributes.containsKey('Implementation-Version')
-            project.tasks.war.manifest.attributes.containsKey('Implementation-Timestamp')
+            project.tasks.jar.manifest.attributes.with {
+                containsKey('Manifest-Version')
+                containsKey('Specification-Title')
+                containsKey('Specification-Version')
+                containsKey('Implementation-Title')
+                containsKey('Implementation-Version')
+                containsKey('Implementation-Timestamp')
+            }
+            project.tasks.war.manifest.attributes.with {
+                containsKey('Manifest-Version')
+                containsKey('Specification-Title')
+                containsKey('Specification-Version')
+                containsKey('Implementation-Title')
+                containsKey('Implementation-Version')
+                containsKey('Implementation-Timestamp')
+            }
     }
 
 }

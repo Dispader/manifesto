@@ -32,19 +32,23 @@ class ManifestoPlugin implements Plugin<Project> {
         }
 
         project.plugins.whenPluginAdded { plugin ->
-            project.tasks.find { it instanceof Jar }.each { 
-                it.manifest.attributes('Specification-Title': project.name)
-                it.manifest.attributes('Specification-Version': Version.specification)
-                it.manifest.attributes('Implementation-Title': project.name)
-                it.manifest.attributes('Implementation-Version': Version.implementation)
-                it.manifest.attributes('Implementation-Timestamp': new Date())
+            project.tasks.find { it instanceof Jar }.each {
+                it.manifest.with {
+                    attributes('Specification-Title': project.name)
+                    attributes('Specification-Version': Version.specification)
+                    attributes('Implementation-Title': project.name)
+                    attributes('Implementation-Version': Version.implementation)
+                    attributes('Implementation-Timestamp': new Date())
+                }
             }
-            project.tasks.find { it instanceof War }.each { 
-                it.manifest.attributes('Specification-Title': project.name)
-                it.manifest.attributes('Specification-Version': Version.specification)
-                it.manifest.attributes('Implementation-Title': project.name)
-                it.manifest.attributes('Implementation-Version': Version.implementation)
-                it.manifest.attributes('Implementation-Timestamp': new Date())
+            project.tasks.find { it instanceof War }.each {
+                it.manifest.with {
+                    attributes('Specification-Title': project.name)
+                    attributes('Specification-Version': Version.specification)
+                    attributes('Implementation-Title': project.name)
+                    attributes('Implementation-Version': Version.implementation)
+                    attributes('Implementation-Timestamp': new Date())
+                }
             }
         }
 
