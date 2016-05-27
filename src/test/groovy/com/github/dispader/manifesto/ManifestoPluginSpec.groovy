@@ -30,6 +30,7 @@ class ManifestoPluginSpec extends Specification {
             project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
             project.tasks.jar.manifest.attributes.containsKey('Specification-Title')
             project.tasks.jar.manifest.attributes.containsKey('Specification-Version')
+            project.tasks.jar.manifest.attributes.containsKey('Implementation-Version')
             project.tasks.jar.manifest.attributes.containsKey('Implementation-Timestamp')
     }
 
@@ -41,6 +42,7 @@ class ManifestoPluginSpec extends Specification {
             project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
             project.tasks.jar.manifest.attributes.containsKey('Specification-Title')
             project.tasks.jar.manifest.attributes.containsKey('Specification-Version')
+            project.tasks.jar.manifest.attributes.containsKey('Implementation-Version')
             project.tasks.jar.manifest.attributes.containsKey('Implementation-Timestamp')
     }
 
@@ -52,11 +54,13 @@ class ManifestoPluginSpec extends Specification {
             project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
             project.tasks.jar.manifest.attributes.containsKey('Specification-Title')
             project.tasks.jar.manifest.attributes.containsKey('Specification-Version')
+            project.tasks.jar.manifest.attributes.containsKey('Implementation-Version')
             project.tasks.jar.manifest.attributes.containsKey('Implementation-Timestamp')
 
             project.tasks.war.manifest.attributes.containsKey('Manifest-Version')
             project.tasks.war.manifest.attributes.containsKey('Specification-Title')
             project.tasks.war.manifest.attributes.containsKey('Specification-Version')
+            project.tasks.war.manifest.attributes.containsKey('Implementation-Version')
             project.tasks.war.manifest.attributes.containsKey('Implementation-Timestamp')
     }
 
