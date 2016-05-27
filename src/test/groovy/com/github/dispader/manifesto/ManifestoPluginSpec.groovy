@@ -9,57 +9,82 @@ class ManifestoPluginSpec extends Specification {
 
     private Project project = ProjectBuilder.builder().build()
 
-    @Shared private def gitPopulatedKeys =
-        [ 'Specification-Title', 'Specification-Version',
-          'Implementation-Title', 'Implementation-Version', 'Implementation-Timestamp' ]
-
-    def 'adds a "diagnostics" task'() {
-        given:
-            project.pluginManager.apply 'com.github.dispader.manifesto'
-        expect:
-            project.tasks.diagnostics instanceof Task
-    }
-
-    def 'without plugin, JAr manifest contains a version'() {
+    def '(plugins: java) JAr manifest contains a version'() {
         given:
             project.pluginManager.apply 'java'
         expect:
-            project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
-    }
-
-    def 'adds "Implementation-Timestamp" to JAr when manifesto loaded before java'() {
-        given:
-            project.pluginManager.apply 'com.github.dispader.manifesto'
-            project.pluginManager.apply 'java'
-        expect:
-            project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
-            project.tasks.jar.manifest.attributes.containsKey(key)
+            project.tasks.jar.manifest.attributes[key] == value
         where:
-            key << gitPopulatedKeys
+            key                | value
+            'Manifest-Version' | '1.0'
     }
 
-    def 'adds "Implementation-Timestamp" to JAr when manifesto loaded after java'() {
+    def '(plugins: manifesto, java) adds manifest attributes to the JAr'() {
+        given:
+            project.pluginManager.apply 'com.github.dispader.manifesto'
+            project.pluginManager.apply 'java'
+            def attributes = project.tasks.jar.manifest.attributes
+        expect:
+            attributes[attribute] ==~ pattern
+        where:
+            attribute                  | pattern
+            'Manifest-Version'         | '1.0'
+            'Specification-Title'      | 'test'
+            'Specification-Version'    | /\d+\.\d+\.\d/
+            'Implementation-Title'     | 'test'
+            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
+            'Implementation-Timestamp' | /.+/
+    }
+
+    def '(plugins: java, manifesto) adds manifest attributes to the JAr'() {
         given:
             project.pluginManager.apply 'java'
             project.pluginManager.apply 'com.github.dispader.manifesto'
+            def attributes = project.tasks.jar.manifest.attributes
         expect:
-            project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
-            project.tasks.jar.manifest.attributes.containsKey(key)
+            attributes[attribute] ==~ pattern
         where:
-            key << gitPopulatedKeys
+            attribute                  | pattern
+            'Manifest-Version'         | '1.0'
+            'Specification-Title'      | 'test'
+            'Specification-Version'    | /\d+\.\d+\.\d/
+            'Implementation-Title'     | 'test'
+            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
+            'Implementation-Timestamp' | /.+/
     }
 
-    def 'adds "Implementation-Timestamp" to JAr when war plugin loaded'() {
+    def '(plugins: war, manifesto) adds manifest attributes to the JAr'() {
         given:
             project.pluginManager.apply 'war'
             project.pluginManager.apply 'com.github.dispader.manifesto'
+            def attributes = project.tasks.jar.manifest.attributes
         expect:
-            project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
-            project.tasks.jar.manifest.attributes.containsKey(key)
-            project.tasks.war.manifest.attributes.containsKey('Manifest-Version')
-            project.tasks.war.manifest.attributes.containsKey(key)
+            attributes[attribute] ==~ pattern
         where:
-            key << gitPopulatedKeys
+            attribute                  | pattern
+            'Manifest-Version'         | '1.0'
+            'Specification-Title'      | 'test'
+            'Specification-Version'    | /\d+\.\d+\.\d/
+            'Implementation-Title'     | 'test'
+            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
+            'Implementation-Timestamp' | /.+/
+    }
+
+    def '(plugins: war, manifesto) adds manifest attributes to the WAr'() {
+        given:
+            project.pluginManager.apply 'war'
+            project.pluginManager.apply 'com.github.dispader.manifesto'
+            def attributes = project.tasks.war.manifest.attributes
+        expect:
+            attributes[attribute] ==~ pattern
+        where:
+            attribute                  | pattern
+            'Manifest-Version'         | '1.0'
+            'Specification-Title'      | 'test'
+            'Specification-Version'    | /\d+\.\d+\.\d/
+            'Implementation-Title'     | 'test'
+            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
+            'Implementation-Timestamp' | /.+/
     }
 
 }
