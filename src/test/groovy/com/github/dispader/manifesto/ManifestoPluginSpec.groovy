@@ -9,9 +9,8 @@ class ManifestoPluginSpec extends Specification {
 
     private Project project = ProjectBuilder.builder().build()
 
-    @Shared private def autopopulatedKeys =
-        [ 'Manifest-Version',
-          'Specification-Title', 'Specification-Version',
+    @Shared private def gitPopulatedKeys =
+        [ 'Specification-Title', 'Specification-Version',
           'Implementation-Title', 'Implementation-Version', 'Implementation-Timestamp' ]
 
     def 'adds a "diagnostics" task'() {
@@ -33,9 +32,10 @@ class ManifestoPluginSpec extends Specification {
             project.pluginManager.apply 'com.github.dispader.manifesto'
             project.pluginManager.apply 'java'
         expect:
+            project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
             project.tasks.jar.manifest.attributes.containsKey(key)
         where:
-            key << autopopulatedKeys
+            key << gitPopulatedKeys
     }
 
     def 'adds "Implementation-Timestamp" to JAr when manifesto loaded after java'() {
@@ -43,9 +43,10 @@ class ManifestoPluginSpec extends Specification {
             project.pluginManager.apply 'java'
             project.pluginManager.apply 'com.github.dispader.manifesto'
         expect:
+            project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
             project.tasks.jar.manifest.attributes.containsKey(key)
         where:
-            key << autopopulatedKeys
+            key << gitPopulatedKeys
     }
 
     def 'adds "Implementation-Timestamp" to JAr when war plugin loaded'() {
@@ -53,10 +54,12 @@ class ManifestoPluginSpec extends Specification {
             project.pluginManager.apply 'war'
             project.pluginManager.apply 'com.github.dispader.manifesto'
         expect:
+            project.tasks.jar.manifest.attributes.containsKey('Manifest-Version')
             project.tasks.jar.manifest.attributes.containsKey(key)
+            project.tasks.war.manifest.attributes.containsKey('Manifest-Version')
             project.tasks.war.manifest.attributes.containsKey(key)
         where:
-            key << autopopulatedKeys
+            key << gitPopulatedKeys
     }
 
 }

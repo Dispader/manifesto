@@ -9,7 +9,7 @@ class ManifestoPlugin implements Plugin<Project> {
 
     void apply(Project project) {
 
-        project.extensions.create("manifesto", ManifestoPluginExtension)
+        project.extensions.create('manifesto', ManifestoPluginExtension)
 
         project.task('diagnostics') << {
             println "Specification-Title: ${project.name}"
