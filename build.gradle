@@ -6,6 +6,22 @@ plugins {
 }
 apply from: './gradle/colored-test-output.gradle'
 
+version = '0.1.0'
+group = 'com.github.dispader.manifesto'
+pluginBundle {
+    website = 'https://github.com/Dispader/manifesto'
+    vcsUrl = 'https://github.com/Dispader/manifesto'
+    description = 'JAr and War manifests made less painful.'
+    tags = ['version', 'versioning', 'git', 'describe', 'git describe']
+
+    plugins {
+        greetingsPlugin {
+            id = 'com.github.dispader.manifesto'
+            displayName = 'Manifesto plugin'
+        }
+    }
+}
+
 repositories.jcenter()
 dependencies {
     compile gradleApi()
