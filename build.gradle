@@ -2,7 +2,7 @@ plugins {
     id 'project-report'
     id 'build-announcements'
     id 'groovy'
-    id 'maven'
+    id 'com.gradle.plugin-publish' version '0.9.4'
 }
 apply from: './gradle/colored-test-output.gradle'
 
@@ -15,12 +15,3 @@ dependencies {
         exclude module: "groovy-all"
     }
 }
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: uri('../repo'))
-        }
-    }
-}
-
