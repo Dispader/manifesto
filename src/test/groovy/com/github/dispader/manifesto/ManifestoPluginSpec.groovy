@@ -12,10 +12,7 @@ class ManifestoPluginSpec extends Specification {
         given:
             project.pluginManager.apply 'java'
         expect:
-            project.tasks.jar.manifest.attributes[key] == value
-        where:
-            key                | value
-            'Manifest-Version' | '1.0'
+            project.tasks.jar.manifest.attributes['Manifest-Version'] == '1.0'
     }
 
     def '(plugins: manifesto, java) adds manifest attributes to the JAr'() {
