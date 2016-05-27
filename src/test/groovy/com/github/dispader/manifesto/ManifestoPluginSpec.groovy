@@ -1,7 +1,6 @@
 package com.github.dispader.manifesto
 
-import spock.lang.Shared
-import spock.lang.Specification
+import spock.lang.*
 import org.gradle.api.*
 import org.gradle.testfixtures.*
 
