@@ -83,4 +83,21 @@ class ManifestoPluginSpec extends Specification {
             'Implementation-Timestamp' | /.+/
     }
 
+    def '(plugins: manifesto) accepts configuration extensions'() {
+        given:
+            project.pluginManager.apply 'com.github.dispader.manifesto'
+            project.configure(project) {
+                manifesto {
+                    vendor = 'Jake Gage'
+                    vendor_id = 'com.github.dispader'
+                    url = 'https://github.com/Dispader/manifesto'
+                }
+            }
+            def manifesto = project.getExtensions().findByName('manifesto')
+        expect:
+            manifesto.vendor == 'Jake Gage'
+            manifesto.vendor_id == 'com.github.dispader'
+            manifesto.url == 'https://github.com/Dispader/manifesto'
+    }
+
 }
