@@ -36,6 +36,9 @@ class ManifestoPlugin implements Plugin<Project> {
                 it.manifest.with {
                     attributes('Specification-Title': project.name)
                     attributes('Specification-Version': Version.specification)
+                    if ( project?.manifesto?.vendor ) {
+                        attributes('Specification-Vendor': "${project.manifesto.vendor}")
+                    }
                     attributes('Implementation-Title': project.name)
                     attributes('Implementation-Version': Version.implementation)
                     attributes('Implementation-Timestamp': new Date())

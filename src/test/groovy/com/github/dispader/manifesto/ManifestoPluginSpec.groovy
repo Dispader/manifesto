@@ -100,4 +100,22 @@ class ManifestoPluginSpec extends Specification {
             manifesto.url == 'https://github.com/Dispader/manifesto'
     }
 
+    def '(plugins: java, manifesto) adds configuration extensions to manifests'() {
+            project.pluginManager.apply 'com.github.dispader.manifesto'
+            project.configure(project) {
+                manifesto {
+                    vendor = 'Jake Gage'
+                    vendor_id = 'com.github.dispader'
+                    url = 'https://github.com/Dispader/manifesto'
+                }
+            }
+            project.pluginManager.apply 'java'
+            def attributes = project.tasks.jar.manifest.attributes
+        expect:
+            attributes[attribute] ==~ pattern
+        where:
+            attribute                  | pattern
+            'Specification-Vendor'     | 'Jake Gage'
+    }
+
 }
