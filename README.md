@@ -1,5 +1,7 @@
 # Manifesto plugin
 
+[![Build Status](https://travis-ci.org/Dispader/manifesto.svg?branch=master)](https://travis-ci.org/Dispader/manifesto)
+
 A plugin for the Gradle build system that sets manifest data for JAR and WAR artifacts inferred from a project's Git status.
 
 ## Usage
