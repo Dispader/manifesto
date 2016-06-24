@@ -118,6 +118,7 @@ class ManifestoPluginSpec extends Specification {
             'Specification-Vendor'     | 'Jake Gage'
             'Implementation-Vendor'    | 'Jake Gage'
             'Implementation-Vendor-Id' | 'com.github.dispader'
+            'Implementation-URL'       | 'https://github.com/Dispader/manifesto'
     }
 
     def '(plugins: war, manifesto) adds configuration extensions to manifests'() {
@@ -138,6 +139,7 @@ class ManifestoPluginSpec extends Specification {
             'Specification-Vendor'     | 'Jake Gage'
             'Implementation-Vendor'    | 'Jake Gage'
             'Implementation-Vendor-Id' | 'com.github.dispader'
+            'Implementation-URL'       | 'https://github.com/Dispader/manifesto'
     }
 
 }
