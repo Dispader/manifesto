@@ -1,14 +1,56 @@
-# Manifesto
+# Manifesto plugin
 
-Development version of a Gradle plugin to set manifest for versioned (JAR, WAR)
-artifacts based on implied (project/Git) status.
+A plugin for the Gradle build system that sets manifest data for JAR and WAR artifacts inferred from a project's Git status.
 
-## usage
+## Usage
 
-* `./gradlew test` — run tests
-* `./gradlew jar` — package plugin
-* `./gradlew uploadArchives` — store packaged JAr in temporary repository
-  * in `../repo` (may be used for local testing)
-  * TODO: remove
-* `apply plugin: "<path_to_plugin>"` — applies plugin to project
-  * adds Manifest information to JAr and WAr archives produced by plugins
+### Applying the plugin
+
+Include either of the following in your build script:
+
+#### Gradle 2.1+
+
+```groovy
+plugins {
+    id 'com.github.dispader.manifesto' version '0.2.0'
+}
+```
+
+#### Gradle 1.x/2.0
+
+```groovy
+buildscript {
+    repositories.jcenter()
+    dependencies {
+        classpath 'com.github.dispader:manifesto:0.2.0'
+    }
+}
+apply plugin: 'com.github.dispader.manifesto'
+```
+
+### Prerequisites
+
+The plugin will only works in conjunction with the `java` and/or `war` plugin, and only produces meaningful results for Git projects.
+
+### Configuration
+
+Some elements of manifests which cannot be determined from the Git project status may be set via the plugin's configuration object.
+
+* `vendor` sets `Specification-Vendor` and `Implementation-Vendor`
+* `vendor_id` sets `Implementation-Vendor-Id`
+* `url` sets `Implementation-URL`
+
+```groovy
+manifesto {
+    vendor = 'Jake Gage'
+    vendor_id = 'com.github.dispader'
+    url = 'https://github.com/Dispader/manifesto'
+}
+```
+
+### Behavior
+
+* `Manifest-Version` is set to `1.0`
+* `Specification-Title` and `Implementation-Title` are set to the Git project directory name
+* `Specification-Version` and `Implementation-Version` are set based on Git commit status (see [`git describe`](https://git-scm.com/docs/git-describe))
+* `Implementation-Timestamp` is set to the build time
