@@ -42,6 +42,9 @@ class ManifestoPlugin implements Plugin<Project> {
                     if ( project?.manifesto?.vendor ) {
                         attributes('Implementation-Vendor': "${project.manifesto.vendor}")
                     }
+                    if ( project?.manifesto?.vendor_id ) {
+                        attributes('Implementation-Vendor-Id': "${project.manifesto.vendor_id}")
+                    }
                     attributes('Implementation-Title': project.name)
                     attributes('Implementation-Version': Version.implementation)
                     attributes('Implementation-Timestamp': new Date())
@@ -56,6 +59,9 @@ class ManifestoPlugin implements Plugin<Project> {
                     }
                     if ( project?.manifesto?.vendor ) {
                         attributes('Implementation-Vendor': "${project.manifesto.vendor}")
+                    }
+                    if ( project?.manifesto?.vendor_id ) {
+                        attributes('Implementation-Vendor-Id': "${project.manifesto.vendor_id}")
                     }
                     attributes('Implementation-Title': project.name)
                     attributes('Implementation-Version': Version.implementation)
