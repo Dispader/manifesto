@@ -116,6 +116,7 @@ class ManifestoPluginSpec extends Specification {
         where:
             attribute                  | pattern
             'Specification-Vendor'     | 'Jake Gage'
+            'Implementation-Vendor'    | 'Jake Gage'
     }
 
     def '(plugins: war, manifesto) adds configuration extensions to manifests'() {
@@ -134,6 +135,7 @@ class ManifestoPluginSpec extends Specification {
         where:
             attribute                  | pattern
             'Specification-Vendor'     | 'Jake Gage'
+            'Implementation-Vendor'    | 'Jake Gage'
     }
 
 }
