@@ -12,28 +12,7 @@ class ManifestoPlugin implements Plugin<Project> {
         project.extensions.create('manifesto', ManifestoPluginExtension)
 
         project.plugins.whenPluginAdded { plugin ->
-            project.tasks.find { it instanceof Jar }.each {
-                it.manifest.with {
-                    attributes('Specification-Title': project.name)
-                    attributes('Specification-Version': Version.specification)
-                    if ( project?.manifesto?.vendor ) {
-                        attributes('Specification-Vendor': "${project.manifesto.vendor}")
-                    }
-                    if ( project?.manifesto?.vendor ) {
-                        attributes('Implementation-Vendor': "${project.manifesto.vendor}")
-                    }
-                    if ( project?.manifesto?.vendor_id ) {
-                        attributes('Implementation-Vendor-Id': "${project.manifesto.vendor_id}")
-                    }
-                    if ( project?.manifesto?.url ) {
-                        attributes('Implementation-URL': "${project.manifesto.url}")
-                    }
-                    attributes('Implementation-Title': project.name)
-                    attributes('Implementation-Version': Version.implementation)
-                    attributes('Implementation-Timestamp': new Date())
-                }
-            }
-            project.tasks.find { it instanceof War }.each {
+            project.tasks.findAll { ( it instanceof Jar || it instanceof War ) }.each {
                 it.manifest.with {
                     attributes('Specification-Title': project.name)
                     attributes('Specification-Version': Version.specification)
@@ -57,5 +36,4 @@ class ManifestoPlugin implements Plugin<Project> {
         }
 
     }
-
 }
