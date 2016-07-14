@@ -32,14 +32,20 @@ apply plugin: 'com.github.dispader.manifesto'
 
 ### Prerequisites
 
-The plugin will only works in conjunction with the `java` and/or `war` plugin, and only produces meaningful results for Git projects.
+The plugin only affects configurations for the `java` and/or `war` plugins, and only produces meaningful results for Git projects.
 
 ### Configuration
 
-Some elements of manifests which cannot be determined from the Git project status may be set via the plugin's configuration object.
+#### default configuration
+
+If the conventional `project.group` is defined (for the top-level project), this value will be used to set the `Implementation-Vendor-Id`.
+
+#### extension configuration
+
+Some elements of manifests which cannot be determined from the Git project status or the default project configuration can be set via the plugin's configuration object.
 
 * `vendor` sets `Specification-Vendor` and `Implementation-Vendor`
-* `vendor_id` sets `Implementation-Vendor-Id`
+* `vendor_id` sets `Implementation-Vendor-Id` (and overrides `project.group` default)
 * `url` sets `Implementation-URL`
 
 ```groovy

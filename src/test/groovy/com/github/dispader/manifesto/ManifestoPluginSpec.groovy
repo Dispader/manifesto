@@ -142,4 +142,33 @@ class ManifestoPluginSpec extends Specification {
             'Implementation-URL'       | 'https://github.com/Dispader/manifesto'
     }
 
+    def '(plugins: java, manifesto) defaults Implementation-Vendor-Id from the project group'() {
+            project.group = 'com.github.dispader'
+            project.pluginManager.apply 'com.github.dispader.manifesto'
+            project.pluginManager.apply 'java'
+            def attributes = project.tasks.jar.manifest.attributes
+        expect:
+            attributes[attribute] ==~ pattern
+        where:
+            attribute                  | pattern
+            'Implementation-Vendor-Id' | 'com.github.dispader'
+    }
+
+    def '(plugins: java, manifesto) overrides Implementation-Vendor-Id with configuration'() {
+            project.group = 'org.example.user'
+            project.pluginManager.apply 'com.github.dispader.manifesto'
+            project.configure(project) {
+                manifesto {
+                    vendor_id = 'com.github.dispader'
+                }
+            }
+            project.pluginManager.apply 'java'
+            def attributes = project.tasks.jar.manifest.attributes
+        expect:
+            attributes[attribute] ==~ pattern
+        where:
+            attribute                  | pattern
+            'Implementation-Vendor-Id' | 'com.github.dispader'
+    }
+
 }

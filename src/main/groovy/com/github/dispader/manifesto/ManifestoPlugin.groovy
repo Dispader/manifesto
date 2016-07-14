@@ -9,7 +9,7 @@ class ManifestoPlugin implements Plugin<Project> {
 
     void apply(Project project) {
 
-        project.extensions.create('manifesto', ManifestoPluginExtension)
+        project.extensions.create('manifesto', ManifestoPluginExtension, project)
 
         project.plugins.whenPluginAdded { plugin ->
             project.tasks.findAll { ( it instanceof Jar || it instanceof War ) }.each {
