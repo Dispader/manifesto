@@ -14,7 +14,7 @@ Include either of the following in your build script:
 
 ```groovy
 plugins {
-    id 'com.github.dispader.manifesto' version '0.2.0'
+    id 'com.github.dispader.manifesto' version '0.3.0'
 }
 ```
 
@@ -24,7 +24,7 @@ plugins {
 buildscript {
     repositories.jcenter()
     dependencies {
-        classpath 'com.github.dispader:manifesto:0.2.0'
+        classpath 'com.github.dispader:manifesto:0.3.0'
     }
 }
 apply plugin: 'com.github.dispader.manifesto'
