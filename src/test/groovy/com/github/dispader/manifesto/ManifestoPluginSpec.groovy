@@ -49,7 +49,7 @@ class ManifestoPluginSpec extends Specification {
             'Implementation-Timestamp' | /.+/
     }
 
-    def '(plugins: war, manifesto) adds manifest attributes to the JAr'() {
+    def '(plugins: war, manifesto) adds manifest attributes to the WAr'() {
         given:
             project.pluginManager.apply 'war'
             project.pluginManager.apply 'com.github.dispader.manifesto'

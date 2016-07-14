@@ -11,7 +11,7 @@ group = 'com.github.dispader.manifesto'
 pluginBundle {
     website = 'https://github.com/Dispader/manifesto'
     vcsUrl = 'https://github.com/Dispader/manifesto'
-    description = 'JAr and War manifests made less painful.'
+    description = 'JAr and WAr manifests made less painful.'
     tags = ['version', 'versioning', 'git', 'describe', 'git describe']
 
     plugins {
