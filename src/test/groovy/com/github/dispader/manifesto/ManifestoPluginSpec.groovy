@@ -101,6 +101,7 @@ class ManifestoPluginSpec extends Specification {
     }
 
     def '(plugins: java, manifesto) adds configuration extensions to manifests'() {
+        given:
             project.pluginManager.apply 'com.github.dispader.manifesto'
             project.configure(project) {
                 manifesto {
@@ -122,6 +123,7 @@ class ManifestoPluginSpec extends Specification {
     }
 
     def '(plugins: war, manifesto) adds configuration extensions to manifests'() {
+        given:
             project.pluginManager.apply 'com.github.dispader.manifesto'
             project.configure(project) {
                 manifesto {
@@ -143,6 +145,7 @@ class ManifestoPluginSpec extends Specification {
     }
 
     def '(plugins: java, manifesto) defaults Implementation-Vendor-Id from the project group'() {
+        given:
             project.group = 'com.github.dispader'
             project.pluginManager.apply 'com.github.dispader.manifesto'
             project.pluginManager.apply 'java'
@@ -155,6 +158,7 @@ class ManifestoPluginSpec extends Specification {
     }
 
     def '(plugins: java, manifesto) overrides Implementation-Vendor-Id with configuration'() {
+        given:
             project.group = 'org.example.user'
             project.pluginManager.apply 'com.github.dispader.manifesto'
             project.configure(project) {
