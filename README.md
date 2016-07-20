@@ -62,3 +62,5 @@ manifesto {
 * `Specification-Title` and `Implementation-Title` are set to the Git project directory name
 * `Specification-Version` and `Implementation-Version` are set based on Git commit status (see [`git describe`](https://git-scm.com/docs/git-describe))
 * `Implementation-Timestamp` is set to the build time
+
+[![Analytics](https://ga-beacon.appspot.com/UA-61184208-1/chromeskel_a/readme)](https://github.com/igrigorik/ga-beacon)
