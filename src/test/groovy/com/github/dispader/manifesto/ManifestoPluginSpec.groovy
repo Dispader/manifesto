@@ -175,4 +175,21 @@ class ManifestoPluginSpec extends Specification {
             'Implementation-Vendor-Id' | 'com.github.dispader'
     }
 
+    def '(plugins: java, manifesto) defaults Versions from project version'() {
+        setup:
+            Version.metaClass.static.getSpecification = { '' }
+            Version.metaClass.static.getImplementation = { '' }
+            project.version = '1.2.3'
+            project.pluginManager.apply 'com.github.dispader.manifesto'
+            project.pluginManager.apply 'java'
+        when:
+            def attributes = project.tasks.jar.manifest.attributes
+        then:
+            attributes[attribute] ==~ pattern
+        where:
+            attribute                | pattern
+            'Specification-Version'  | '1.2.3'
+            'Implementation-Version' | '1.2.3'
+    }
+
 }

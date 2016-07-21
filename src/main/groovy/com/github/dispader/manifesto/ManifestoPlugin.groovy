@@ -15,7 +15,11 @@ class ManifestoPlugin implements Plugin<Project> {
             project.tasks.findAll { ( it instanceof Jar || it instanceof War ) }.each {
                 it.manifest.with {
                     attributes('Specification-Title': project.name)
-                    attributes('Specification-Version': Version.specification)
+                    if ( Version.specification ) {
+                        attributes('Specification-Version': Version.specification)
+                    } else if ( project.version ) {
+                        attributes('Specification-Version': project.version)
+                    }
                     if ( project?.manifesto?.vendor ) {
                         attributes('Specification-Vendor': "${project.manifesto.vendor}")
                     }
@@ -29,7 +33,11 @@ class ManifestoPlugin implements Plugin<Project> {
                         attributes('Implementation-URL': "${project.manifesto.url}")
                     }
                     attributes('Implementation-Title': project.name)
-                    attributes('Implementation-Version': Version.implementation)
+                    if ( Version.implementation ) {
+                        attributes('Implementation-Version': Version.implementation)
+                    } else if ( project.version ) {
+                        attributes('Implementation-Version': project.version)
+                    }
                     attributes('Implementation-Timestamp': new Date())
                 }
             }
