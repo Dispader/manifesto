@@ -61,7 +61,7 @@ manifesto {
 * `Manifest-Version` is set to `1.0`
 * `Specification-Title` and `Implementation-Title` are set to the Gradle `rootProject.name`
 * `Specification-Version` and `Implementation-Version` are set based on Git commit status (see [`git describe`](https://git-scm.com/docs/git-describe))
-  * IFF no version can be determined via a `git describe`, and a `rootProject.version` is, this value will be used instead
+  * IFF no version can be determined via a `git describe`, and a Gradle `rootProject.version` can be, this value will be used instead
 * `Implementation-Timestamp` is set to the build time
 
 [![Analytics](https://ga-beacon.appspot.com/UA-61184208-1/chromeskel_a/readme)](https://github.com/igrigorik/ga-beacon)
