@@ -188,8 +188,8 @@ class ManifestoPluginSpec extends Specification {
             attributes[attribute] ==~ pattern
         where:
             attribute                | pattern
-            'Specification-Version'  | '1.2.3'
-            'Implementation-Version' | '1.2.3'
+            'Specification-Version'  | 'v1.2.3'
+            'Implementation-Version' | 'v1.2.3'
     }
 
 }

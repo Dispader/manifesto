@@ -18,7 +18,7 @@ class ManifestoPlugin implements Plugin<Project> {
                     if ( Version.specification ) {
                         attributes('Specification-Version': Version.specification)
                     } else if ( project.version ) {
-                        attributes('Specification-Version': project.version)
+                        attributes('Specification-Version': "v${project.version}")
                     }
                     if ( project?.manifesto?.vendor ) {
                         attributes('Specification-Vendor': "${project.manifesto.vendor}")
@@ -36,7 +36,7 @@ class ManifestoPlugin implements Plugin<Project> {
                     if ( Version.implementation ) {
                         attributes('Implementation-Version': Version.implementation)
                     } else if ( project.version ) {
-                        attributes('Implementation-Version': project.version)
+                        attributes('Implementation-Version': "v${project.version}")
                     }
                     attributes('Implementation-Timestamp': new Date())
                 }
