@@ -1,6 +1,6 @@
 # Manifesto plugin
 
-[![Release](https://img.shields.io/badge/version-0.3.0-blue.svg)](https://plugins.gradle.org/plugin/com.github.dispader.manifesto) [![Build Status](https://travis-ci.org/Dispader/manifesto.svg?branch=master)](https://travis-ci.org/Dispader/manifesto) [![Dependency Status](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa)
+[![Release](https://img.shields.io/badge/version-0.4.0-blue.svg)](https://plugins.gradle.org/plugin/com.github.dispader.manifesto) [![Build Status](https://travis-ci.org/Dispader/manifesto.svg?branch=master)](https://travis-ci.org/Dispader/manifesto) [![Dependency Status](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa)
 
 A plugin for the Gradle build system that sets manifest data for JAr and WAr artifacts inferred from a project's Git status.
 
@@ -14,7 +14,7 @@ Include either of the following in your build script:
 
 ```groovy
 plugins {
-    id 'com.github.dispader.manifesto' version '0.3.0'
+    id 'com.github.dispader.manifesto' version '0.4.0'
 }
 ```
 
@@ -24,7 +24,7 @@ plugins {
 buildscript {
     repositories.jcenter()
     dependencies {
-        classpath 'com.github.dispader:manifesto:0.3.0'
+        classpath 'com.github.dispader:manifesto:0.4.0'
     }
 }
 apply plugin: 'com.github.dispader.manifesto'
