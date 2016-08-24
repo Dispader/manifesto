@@ -64,4 +64,5 @@ manifesto {
   * IFF no version can be determined via a `git describe`, and a Gradle `rootProject.version` can be, this value will be used instead
 * `Implementation-Timestamp` is set to the build time
 
+[![semver](http://img.shields.io/:semver-0.4.0-blue.svg)](http://semver.org)
 [![Analytics](https://ga-beacon.appspot.com/UA-61184208-1/chromeskel_a/readme)](https://github.com/igrigorik/ga-beacon)
