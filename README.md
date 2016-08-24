@@ -65,4 +65,3 @@ manifesto {
 * `Implementation-Timestamp` is set to the build time
 
 [![semver](http://img.shields.io/:semver-0.4.0-blue.svg)](http://semver.org)
-[![Analytics](https://ga-beacon.appspot.com/UA-61184208-1/chromeskel_a/readme)](https://github.com/igrigorik/ga-beacon)
