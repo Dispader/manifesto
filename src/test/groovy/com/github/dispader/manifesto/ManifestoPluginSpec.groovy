@@ -26,9 +26,9 @@ class ManifestoPluginSpec extends Specification {
             attribute                  | pattern
             'Manifest-Version'         | '1.0'
             'Specification-Title'      | 'test'
-            'Specification-Version'    | /v\d+\.\d+\.\d/
+            'Specification-Version'    | /\d+\.\d+\.\d/
             'Implementation-Title'     | 'test'
-            'Implementation-Version'   | /v\d+\.\d+\.\d(-.*)?/
+            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
             'Implementation-Timestamp' | /.+/
     }
 
@@ -43,9 +43,9 @@ class ManifestoPluginSpec extends Specification {
             attribute                  | pattern
             'Manifest-Version'         | '1.0'
             'Specification-Title'      | 'test'
-            'Specification-Version'    | /v\d+\.\d+\.\d/
+            'Specification-Version'    | /\d+\.\d+\.\d/
             'Implementation-Title'     | 'test'
-            'Implementation-Version'   | /v\d+\.\d+\.\d(-.*)?/
+            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
             'Implementation-Timestamp' | /.+/
     }
 
@@ -60,9 +60,9 @@ class ManifestoPluginSpec extends Specification {
             attribute                  | pattern
             'Manifest-Version'         | '1.0'
             'Specification-Title'      | 'test'
-            'Specification-Version'    | /v\d+\.\d+\.\d/
+            'Specification-Version'    | /\d+\.\d+\.\d/
             'Implementation-Title'     | 'test'
-            'Implementation-Version'   | /v\d+\.\d+\.\d(-.*)?/
+            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
             'Implementation-Timestamp' | /.+/
     }
 
@@ -77,9 +77,9 @@ class ManifestoPluginSpec extends Specification {
             attribute                  | pattern
             'Manifest-Version'         | '1.0'
             'Specification-Title'      | 'test'
-            'Specification-Version'    | /v\d+\.\d+\.\d/
+            'Specification-Version'    | /\d+\.\d+\.\d/
             'Implementation-Title'     | 'test'
-            'Implementation-Version'   | /v\d+\.\d+\.\d(-.*)?/
+            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
             'Implementation-Timestamp' | /.+/
     }
 
@@ -188,8 +188,8 @@ class ManifestoPluginSpec extends Specification {
             attributes[attribute] ==~ pattern
         where:
             attribute                | pattern
-            'Specification-Version'  | 'v1.2.3'
-            'Implementation-Version' | 'v1.2.3'
+            'Specification-Version'  | '1.2.3'
+            'Implementation-Version' | '1.2.3'
     }
 
 }

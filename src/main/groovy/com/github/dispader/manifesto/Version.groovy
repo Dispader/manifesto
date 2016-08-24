@@ -6,7 +6,12 @@ class Version {
         try { org.ajoberstar.grgit.Grgit.open() } catch(Exception ex) { }
     }
 
-    static getImplementation() { git?.describe { } ?: '' }
+    static getVersion() {
+        String description = git?.describe { }
+        description.startsWith('v') ? description.substring(1) : description
+    }
+
+    static getImplementation() { Version.version ?: '' }
     static getSpecification() { implementation?.split(/-\d/)[0] ?: '' }
 
 }
