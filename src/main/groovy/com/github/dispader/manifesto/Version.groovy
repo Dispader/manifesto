@@ -1,9 +1,15 @@
 package com.github.dispader.manifesto
 
+import org.gradle.api.GradleException
+
 class Version {
 
     private static getGit() {
-        try { org.ajoberstar.grgit.Grgit.open() } catch(Exception ex) { }
+        try {
+            org.ajoberstar.grgit.Grgit.open()
+        } catch(Exception ex) {
+            throw new GradleException('This project is not controlled by git.')
+        }
     }
 
     static getVersion() {
