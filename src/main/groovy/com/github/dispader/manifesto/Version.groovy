@@ -1,6 +1,6 @@
 package com.github.dispader.manifesto
 
-import org.gradle.api.GradleException
+import org.gradle.api.ProjectConfigurationException
 
 class Version {
 
@@ -8,14 +8,14 @@ class Version {
         try {
             org.ajoberstar.grgit.Grgit.open()
         } catch(Exception ex) {
-            throw new GradleException('This project is not controlled by git.')
+            throw new ProjectConfigurationException('This project is not controlled by git.')
         }
     }
 
     static getVersion() {
         String description = git?.describe { }
         if ( !description ) {
-            throw new GradleException('This project is not controlled by git.')
+            throw new ProjectConfigurationException('This project is not controlled by git.')
         }
         description.startsWith('v') ? description.substring(1) : description
     }
