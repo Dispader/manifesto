@@ -19,6 +19,9 @@ class Version {
         } catch(IllegalStateException ise) {
             throw new ProjectConfigurationException('This project is not controlled by git.', )
         }
+        if ( !description ) {
+            throw new ProjectConfigurationException('This project is not controlled by git.', )
+        }
         description.startsWith('v') ? description.substring(1) : description
     }
 
