@@ -8,14 +8,16 @@ class Version {
         try {
             org.ajoberstar.grgit.Grgit.open()
         } catch(Exception ex) {
-            throw new ProjectConfigurationException('This project is not controlled by git.')
+            throw new IllegalStateException('This project is not controlled by git.')
         }
     }
 
     static getVersion() {
-        String description = git?.describe { }
-        if ( !description ) {
-            throw new ProjectConfigurationException('This project is not controlled by git.')
+        String description
+        try {
+            description = git?.describe { }
+        } catch(IllegalStateException ise) {
+            throw new ProjectConfigurationException('This project is not controlled by git.', )
         }
         description.startsWith('v') ? description.substring(1) : description
     }
