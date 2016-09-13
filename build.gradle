@@ -6,7 +6,7 @@ plugins {
 }
 apply from: './gradle/colored-test-output.gradle'
 
-version = '0.6.0'
+version = '0.7.0'
 group = 'com.github.dispader.manifesto'
 pluginBundle {
     website = 'https://github.com/Dispader/manifesto'

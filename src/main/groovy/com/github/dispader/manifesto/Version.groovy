@@ -14,6 +14,9 @@ class Version {
 
     static getVersion() {
         String description = git?.describe { }
+        if ( !description ) {
+            throw new GradleException('This project is not controlled by git.')
+        }
         description.startsWith('v') ? description.substring(1) : description
     }
 
