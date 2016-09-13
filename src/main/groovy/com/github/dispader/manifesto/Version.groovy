@@ -17,10 +17,10 @@ class Version {
         try {
             description = git?.describe { }
         } catch(IllegalStateException ise) {
-            throw new ProjectConfigurationException('This project is not controlled by git.', null)
+            throw new ProjectConfigurationException('The manifesto plugin is only applicable to git versioned projects.', null)
         }
         if ( !description ) {
-            throw new ProjectConfigurationException('This project is not controlled by git.', null)
+            throw new ProjectConfigurationException('The manifesto plugin is only applicable to git versioned projects.', null)
         }
         description.startsWith('v') ? description.substring(1) : description
     }
