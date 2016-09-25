@@ -4,23 +4,16 @@ import org.gradle.api.ProjectConfigurationException
 
 class Version {
 
-    private static getGit() {
-        try {
-            org.ajoberstar.grgit.Grgit.open()
-        } catch(Exception ex) {
-            throw new IllegalStateException('This project is not controlled by git.')
-        }
-    }
+    private static getGit() { org.ajoberstar.grgit.Grgit.open() }
+
+    static Boolean getOkay() { Version.git as Boolean }
 
     static getVersion() {
         String description
-        try {
-            description = git?.describe { }
-        } catch(IllegalStateException ise) {
-            throw new ProjectConfigurationException('The manifesto plugin is only applicable to git versioned projects.', null)
-        }
+        if ( !Version.okay ) '0.0.0'
+        description = git?.describe { }
         if ( !description ) {
-            throw new ProjectConfigurationException('The manifesto plugin is only applicable to git versioned projects.', null)
+            throw new ProjectConfigurationException('Marx failed you.', null)
         }
         description.startsWith('v') ? description.substring(1) : description
     }
