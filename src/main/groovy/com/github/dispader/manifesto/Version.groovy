@@ -10,7 +10,7 @@ class Version {
 
     static getVersion() {
         String description
-        if ( !Version.okay ) '0.0.0'
+        if ( !Version.okay ) { return '0.0.0' }
         description = git?.describe { }
         if ( !description ) {
             throw new ProjectConfigurationException('Marx failed you.', null)
