@@ -12,37 +12,37 @@ class ManifestoPlugin implements Plugin<Project> {
         project.extensions.create('manifesto', ManifestoPluginExtension, project)
 
         project.plugins.whenPluginAdded { plugin ->
-            if ( !Version.versioned ) {
-                println 'warning: The Manifesto plugin is only useful for projects using git source control.'
-            } else {
-                project.tasks.findAll { ( it instanceof Jar || it instanceof War ) }.each {
-                    it.manifest.with {
-                        attributes('Specification-Title': project.name)
-                        if ( Version.specification ) {
-                            attributes('Specification-Version': Version.specification)
-                        } else if ( project.version ) {
-                            attributes('Specification-Version': "${project.version}")
-                        }
-                        if ( project?.manifesto?.vendor ) {
-                            attributes('Specification-Vendor': "${project.manifesto.vendor}")
-                        }
-                        if ( project?.manifesto?.vendor ) {
-                            attributes('Implementation-Vendor': "${project.manifesto.vendor}")
-                        }
-                        if ( project?.manifesto?.vendor_id ) {
-                            attributes('Implementation-Vendor-Id': "${project.manifesto.vendor_id}")
-                        }
-                        if ( project?.manifesto?.url ) {
-                            attributes('Implementation-URL': "${project.manifesto.url}")
-                        }
-                        attributes('Implementation-Title': project.name)
-                        if ( Version.implementation ) {
-                            attributes('Implementation-Version': Version.implementation)
-                        } else if ( project.version ) {
-                            attributes('Implementation-Version': "${project.version}")
-                        }
-                        attributes('Implementation-Timestamp': new Date())
+            project.tasks.findAll { ( it instanceof Jar || it instanceof War ) }.each {
+                if ( !Version.versioned ) {
+                    println 'warning: The Manifesto plugin is only useful for projects using git source control.'
+                    return
+                }
+                it.manifest.with {
+                    attributes('Specification-Title': project.name)
+                    if ( Version.specification ) {
+                        attributes('Specification-Version': Version.specification)
+                    } else if ( project.version ) {
+                        attributes('Specification-Version': "${project.version}")
                     }
+                    if ( project?.manifesto?.vendor ) {
+                        attributes('Specification-Vendor': "${project.manifesto.vendor}")
+                    }
+                    if ( project?.manifesto?.vendor ) {
+                        attributes('Implementation-Vendor': "${project.manifesto.vendor}")
+                    }
+                    if ( project?.manifesto?.vendor_id ) {
+                        attributes('Implementation-Vendor-Id': "${project.manifesto.vendor_id}")
+                    }
+                    if ( project?.manifesto?.url ) {
+                        attributes('Implementation-URL': "${project.manifesto.url}")
+                    }
+                    attributes('Implementation-Title': project.name)
+                    if ( Version.implementation ) {
+                        attributes('Implementation-Version': Version.implementation)
+                    } else if ( project.version ) {
+                        attributes('Implementation-Version': "${project.version}")
+                    }
+                    attributes('Implementation-Timestamp': new Date())
                 }
             }
         }
