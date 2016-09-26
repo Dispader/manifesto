@@ -5,7 +5,11 @@ import spock.lang.*
 class VersionSpec extends Specification {
 
     def 'can determine if project is controlled by Git'() {
-        expect: Version.okay == true
+        when:
+            Version.metaClass.static.getGit = { null }
+        then:
+            Version.version == '0.0.0'
+            Version.versioned == false
     }
 
 }

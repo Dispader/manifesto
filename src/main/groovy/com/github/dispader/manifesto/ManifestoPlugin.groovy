@@ -12,7 +12,7 @@ class ManifestoPlugin implements Plugin<Project> {
         project.extensions.create('manifesto', ManifestoPluginExtension, project)
 
         project.plugins.whenPluginAdded { plugin ->
-            if ( !Version.okay ) {
+            if ( !Version.versioned ) {
                 println 'warning: The Manifesto plugin is only useful for projects using git source control.'
             } else {
                 project.tasks.findAll { ( it instanceof Jar || it instanceof War ) }.each {

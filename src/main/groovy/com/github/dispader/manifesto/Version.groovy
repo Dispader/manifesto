@@ -1,20 +1,14 @@
 package com.github.dispader.manifesto
 
-import org.gradle.api.ProjectConfigurationException
-
 class Version {
 
     private static getGit() { org.ajoberstar.grgit.Grgit.open() }
 
-    static Boolean getOkay() { Version.git as Boolean }
+    static getVersioned() { ( Version.version == '0.0.0' ) ? false : true  }
 
     static getVersion() {
-        String description
-        if ( !Version.okay ) { return '0.0.0' }
-        description = git?.describe { }
-        if ( !description ) {
-            throw new ProjectConfigurationException('Marx failed you.', null)
-        }
+        String description = Version.git?.describe { }
+        if ( !description ) { return '0.0.0' }
         description.startsWith('v') ? description.substring(1) : description
     }
 
