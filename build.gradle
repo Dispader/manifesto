@@ -4,8 +4,9 @@ plugins {
     id 'groovy'
     id 'com.gradle.plugin-publish' version '0.9.4'
 }
+apply from: './gradle/code-quality.gradle'
 
-version = '0.13.1'
+version = '0.13.2'
 group = 'com.github.dispader.manifesto'
 pluginBundle {
     website = 'https://github.com/Dispader/manifesto'

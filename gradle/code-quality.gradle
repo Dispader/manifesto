@@ -1,0 +1,12 @@
+apply plugin: 'codenarc'
+
+codenarc {
+    ignoreFailures = true
+    configFile = file('src/check/codenarc/codenarc.groovy')
+}
+tasks.withType(CodeNarc) {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
