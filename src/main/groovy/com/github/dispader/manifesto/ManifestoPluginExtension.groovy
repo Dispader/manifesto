@@ -1,6 +1,6 @@
 package com.github.dispader.manifesto
 
-import org.gradle.api.Project;
+import org.gradle.api.Project
 
 class ManifestoPluginExtension {
 
