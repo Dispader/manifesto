@@ -6,7 +6,7 @@ plugins {
 }
 apply from: './gradle/code-quality.gradle'
 
-version = '0.13.2'
+version = '0.14.0'
 group = 'com.github.dispader.manifesto'
 pluginBundle {
     website = 'https://github.com/Dispader/manifesto'

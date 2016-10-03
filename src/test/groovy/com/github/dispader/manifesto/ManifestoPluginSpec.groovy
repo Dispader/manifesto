@@ -192,4 +192,12 @@ class ManifestoPluginSpec extends Specification {
             'Implementation-Version' | '1.2.3'
     }
 
+    def '(plugins: java, manifesto) sets project version'() {
+        setup:
+            project.pluginManager.apply 'com.github.dispader.manifesto'
+            project.pluginManager.apply 'java'
+        expect:
+            project.version ==~ /\d+\.\d+\.\d(-.*)?/
+    }
+
 }
