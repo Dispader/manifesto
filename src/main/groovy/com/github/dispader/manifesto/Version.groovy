@@ -1,9 +1,9 @@
 package com.github.dispader.manifesto
 
 class Version {
-    static String MSG_NO_REPO = 'The Manifesto plugin is only useful for projects using git source control.'
-    static String MSG_NO_COMMITS = 'The Manifesto plugin couldn\'t find any git commits.'
-    static String MSG_NO_TAGS = 'The Manifesto plugin couldn\'t find any version tags. You can create your first tag with `git tag -a v0.1.0`.'
+    final static String MSG_NO_REPO = 'The Manifesto plugin is only useful for projects using git source control.'
+    final static String MSG_NO_COMMITS = 'The Manifesto plugin couldn\'t find any git commits.'
+    final static String MSG_NO_TAGS = 'The Manifesto plugin couldn\'t find any version tags. You can create your first tag with `git tag -a v0.1.0`.'
 
     private static getGit() {
         try {
