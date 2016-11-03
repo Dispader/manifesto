@@ -20,7 +20,7 @@ class Version {
     static getVersion() {
         if ( !Version.versioned ) { return null }
         String description = Version.git?.describe()
-        description.startsWith('v') ? description.substring(1) : description
+        description.startsWith('v') ? description[1..-1] : description
     }
 
     static getImplementation() { Version.version ?: '' }
