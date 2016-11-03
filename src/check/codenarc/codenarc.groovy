@@ -5,7 +5,9 @@ ruleset {
     ruleset('rulesets/braces.xml') {
         exclude 'IfStatementBraces'
     }
-    ruleset('rulesets/design.xml')
+    ruleset('rulesets/design.xml') {
+        exclude 'Instanceof'
+    }
     ruleset('rulesets/dry.xml')
     ruleset('rulesets/exceptions.xml')
     ruleset('rulesets/imports.xml')
