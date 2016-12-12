@@ -1,6 +1,7 @@
 apply plugin: 'codenarc'
 
 codenarc {
+    toolVersion = '0.26.0'
     configFile = file('src/check/codenarc/codenarc.groovy')
 }
 
