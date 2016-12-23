@@ -3,6 +3,7 @@ plugins {
     id 'build-announcements'
     id 'groovy'
     id 'com.gradle.plugin-publish' version '0.9.4'
+    id 'org.sonarqube' version '2.2.1'
 }
 apply from: './gradle/code-quality.gradle'
 

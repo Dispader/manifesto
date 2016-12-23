@@ -1,6 +1,6 @@
 # Manifesto plugin
 
-[![Release](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://plugins.gradle.org/plugin/com.github.dispader.manifesto) [![Build Status](https://travis-ci.org/Dispader/manifesto.svg?branch=master)](https://travis-ci.org/Dispader/manifesto) [![Dependency Status](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa)
+[![Release](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://plugins.gradle.org/plugin/com.github.dispader.manifesto) [![Build Status](https://travis-ci.org/Dispader/manifesto.svg?branch=master)](https://travis-ci.org/Dispader/manifesto) [![Dependency Status](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa) [![SonarQube](https://img.shields.io/badge/SonarQube-dashboard-green.svg)](https://sonarqube.com/dashboard?id=com.github.dispader.manifesto%3Amanifesto)
 
 A plugin for the Gradle build system that sets manifest data for JAr and WAr artifacts inferred from a project's Git status.
 
