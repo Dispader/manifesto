@@ -2,6 +2,7 @@ plugins {
     id 'project-report'
     id 'build-announcements'
     id 'groovy'
+    id 'org.unbroken-dome.test-sets' version '1.2.0'
     id 'com.gradle.plugin-publish' version '0.9.4'
     id 'org.sonarqube' version '2.2.1'
 }
@@ -31,4 +32,14 @@ dependencies {
     testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
         exclude module: "groovy-all"
     }
+}
+
+testSets {
+    integrationTest { dirName = 'integration-test' }
+}
+integrationTest.group = 'Verification'
+integrationTest.description = 'Runs the integration tests.'
+integrationTestJar.group =
+tasks.withType(Test) {
+    testLogging.exceptionFormat = 'full'
 }

@@ -4,7 +4,7 @@ import spock.lang.*
 import org.gradle.api.*
 import org.gradle.testfixtures.*
 
-class ManifestoPluginSpec extends Specification {
+class ManifestoPluginSpecification extends Specification {
 
     private Project project = ProjectBuilder.builder().build()
 
