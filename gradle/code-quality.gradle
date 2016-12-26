@@ -12,6 +12,6 @@ tasks.withType(CodeNarc) {
     }
 }
 
-codenarcTest {
-    exclude '*'
+gradle.taskGraph.whenReady { graph ->
+    graph.allTasks.findAll { it.name ==~ /codenarc.*Test/ }*.enabled = false
 }
