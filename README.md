@@ -1,6 +1,6 @@
 # Manifesto plugin
 
-[![Release](https://img.shields.io/badge/version-1.0.3-blue.svg)](https://plugins.gradle.org/plugin/com.github.dispader.manifesto) [![Build Status](https://travis-ci.org/Dispader/manifesto.svg?branch=master)](https://travis-ci.org/Dispader/manifesto) [![Dependency Status](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa) [![SonarQube](https://img.shields.io/badge/SonarQube-dashboard-green.svg)](https://sonarqube.com/dashboard?id=com.github.dispader.manifesto%3Amanifesto)
+[![Release](https://img.shields.io/badge/version-1.0.4-blue.svg)](https://plugins.gradle.org/plugin/com.github.dispader.manifesto) [![Build Status](https://travis-ci.org/Dispader/manifesto.svg?branch=master)](https://travis-ci.org/Dispader/manifesto) [![Dependency Status](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa) [![SonarQube](https://img.shields.io/badge/SonarQube-dashboard-green.svg)](https://sonarqube.com/dashboard?id=com.github.dispader.manifesto%3Amanifesto)
 
 A plugin for the Gradle build system that sets manifest data for JAr and WAr artifacts inferred from a project's Git status.
 
@@ -14,7 +14,7 @@ Include either of the following in your build script:
 
 ```groovy
 plugins {
-    id 'com.github.dispader.manifesto' version '1.0.3'
+    id 'com.github.dispader.manifesto' version '1.0.4'
 }
 ```
 
@@ -24,7 +24,7 @@ plugins {
 buildscript {
     repositories.jcenter()
     dependencies {
-        classpath 'com.github.dispader:manifesto:1.0.3'
+        classpath 'com.github.dispader:manifesto:1.0.4'
     }
 }
 apply plugin: 'com.github.dispader.manifesto'
@@ -64,4 +64,4 @@ manifesto {
   * IFF no version can be determined via a `git describe`, and a Gradle `rootProject.version` can be, this value will be used instead
 * `Implementation-Timestamp` is set to the build time
 
-[![semver](http://img.shields.io/:semver-1.0.3-blue.svg)](http://semver.org)
+[![semver](http://img.shields.io/:semver-2.0.0-blue.svg)](http://semver.org)
