@@ -8,7 +8,7 @@ plugins {
 }
 apply from: './gradle/code-quality.gradle'
 
-version = '1.0.3'
+version = '1.0.4'
 group = 'com.github.dispader.manifesto'
 pluginBundle {
     website = 'https://github.com/Dispader/manifesto'
@@ -28,7 +28,7 @@ repositories.jcenter()
 dependencies {
     compile gradleApi()
     compile localGroovy()
-    compile 'org.ajoberstar:grgit:1.7.2'
+    compile 'org.ajoberstar:grgit:1.8.0'
     testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
         exclude module: "groovy-all"
     }
