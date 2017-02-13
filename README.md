@@ -32,7 +32,7 @@ apply plugin: 'com.github.dispader.manifesto'
 
 ### Prerequisites
 
-The plugin only affects configurations for the `java` and/or `war` plugins, and only produces meaningful results for Git projects.
+The plugin only affects configurations for the `groovy`, `java`, and `war` plugins; and only produces meaningful results for Git projects.
 
 ### Configuration
 
