@@ -7,28 +7,16 @@ import spock.lang.Specification
 
 public class RepositorySpecification extends Specification {
 
-    def setup() {
-        GroovyMock(Repository, global: true)
+    def repository = new Repository('.')
+
+    def 'can determine the remote for a repository'() {
+        expect:
+            repository.url == 'git@github.com:Dispader/manifesto.git'
     }
 
-    def 'will not construct an inavalid repository (mock)'() {
-        given:
-            Repository.getGrgit(_) >> {
-                throw new RepositoryNotFoundException(directory)
-            }
-        when:
-            def repository = new Repository('.')
-        then:
-            notThrown(IllegalStateException)
-    }
-
-    def 'can construct a valid repository (mock)'() {
-        given:
-            Repository.getGrgit(_) >> { }
-        when:
-            def repository = new Repository('.')
-        then:
-            notThrown(IllegalStateException)
+    def 'can describe a repository'() {
+        expect:
+            repository.describe ==~ /v?\d+\.\d+\.\d(-.*)?/
     }
 
 }

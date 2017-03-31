@@ -1,23 +1,35 @@
 package com.github.dispader.manifesto
 
 import org.ajoberstar.grgit.Grgit
-import org.eclipse.jgit.errors.RepositoryNotFoundException
+import org.eclipse.jgit.lib.RepositoryBuilder
 
 class Repository {
 
-    private final String directory
+    private directory
 
-    static Grgit getGrgit(String directory) {
-        Grgit.open(dir: '.')
-    }
+    Repository(String directory) { this.directory = directory }
 
-    Repository(String directory) {
+    String getUrl() { jgitRepository().getConfig().getString("remote", 'origin', "url") }
+
+    String getDescribe() { grgitRepository().describe() }
+
+    Boolean getHasRepo() { ( grgitRepository() != null ) }
+
+    Boolean getHasCommits() {
         try {
-            Repository.getGrgit(directory)
-        } catch(RepositoryNotFoundException exception) {
-            throw new IllegalStateException('repository not found', exception)
+          grgitRepository().log(maxCommits: 1)
+          return true
+        } catch (GrgitException) {
+          return false
         }
-        this.directory = directory
     }
+
+    Boolean getHasTags() { ( !grgitRepository().tag.list().isEmpty() ) }
+
+    private jgitRepository() { new RepositoryBuilder().findGitDir(new File(directory)).build() }
+
+    private grgitRepository() { org.ajoberstar.grgit.Grgit.open(directory) }
+
+    Grgit getGrgitRepository() { grgitRepository() }
 
 }

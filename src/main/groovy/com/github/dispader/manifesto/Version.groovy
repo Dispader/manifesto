@@ -6,11 +6,7 @@ class Version {
     final static String MSG_NO_TAGS = 'The Manifesto plugin couldn\'t find any version tags. You can create your first tag with `git tag -a v0.1.0`.'
 
     private static getGit() {
-        try {
-            org.ajoberstar.grgit.Grgit.open()
-        } catch (IllegalArgumentException) {
-            null
-        }
+        new Repository('.').grgitRepository
     }
 
     static getVersioned() {
