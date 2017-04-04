@@ -27,6 +27,10 @@ class Repository {
 
     Boolean getHas_tags() { ( !grgitRepository().tag.list().isEmpty() ) }
 
+    Boolean getVersioned() {
+        this.exists && this.has_commits && this.has_tags
+    }
+
     String getDescribe() { grgitRepository().describe() }
 
     String getUrl() { jgitRepository().config.getString('remote', 'origin', 'url') }

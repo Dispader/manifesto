@@ -17,7 +17,7 @@ class Version {
     }
 
     String getVersion() {
-        if ( !this.versioned ) { return '' }
+        if ( !repository.versioned ) { return '' }
         String description = repository?.describe
         description.startsWith('v') ? description[1..-1] : description
     }
@@ -34,10 +34,6 @@ class Version {
         if ( !repository.exists ) { return MSG_NO_REPO }
         if ( !repository.has_commits ) { return MSG_NO_COMMITS }
         if ( !repository.has_tags ) { return MSG_NO_TAGS }
-    }
-
-    private Boolean getVersioned() {
-       repository.exists && repository.has_commits && repository.has_tags
     }
 
 }
