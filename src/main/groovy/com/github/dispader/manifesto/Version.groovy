@@ -21,7 +21,7 @@ class Version {
     }
 
     String getVersion() {
-        if ( !this.versioned ) { return null }
+        if ( !this.versioned ) { return '' }
         String description = repository?.describe
         description.startsWith('v') ? description[1..-1] : description
     }

@@ -14,7 +14,7 @@ class VersionSpec extends Specification {
         then:
             version.warningText == Version.MSG_NO_REPO
             version.versioned == false
-            version.version == null
+            version.version == ''
     }
 
     def 'handles no Git commits'() {
@@ -28,7 +28,7 @@ class VersionSpec extends Specification {
         then:
             version.warningText == Version.MSG_NO_COMMITS
             version.versioned == false
-            version.version == null
+            version.version == ''
     }
 
     def 'handles no Git tags'() {
@@ -43,7 +43,7 @@ class VersionSpec extends Specification {
         then:
             version.warningText == Version.MSG_NO_TAGS
             version.versioned == false
-            version.version == null
+            version.version == ''
     }
 
 }
