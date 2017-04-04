@@ -175,6 +175,7 @@ class ManifestoPluginSpecification extends Specification {
             'Implementation-Vendor-Id' | 'com.github.dispader'
     }
 
+    @Ignore
     def '(plugins: java, manifesto) defaults Versions from project version'() {
         setup:
             Version.metaClass.static.getSpecification = { '' }
