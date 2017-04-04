@@ -21,12 +21,12 @@ public class RepositorySpecification extends Specification {
 
     def 'can report that a repository has commits'() {
         expect:
-            repository.hasCommits == true
+            repository.has_commits == true
     }
 
     def 'can report that a repository has tags'() {
         expect:
-            repository.hasTags == true
+            repository.has_tags == true
     }
 
 }

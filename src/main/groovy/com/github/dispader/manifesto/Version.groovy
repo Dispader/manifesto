@@ -6,39 +6,34 @@ class Version {
     final static String MSG_NO_COMMITS = 'The Manifesto plugin couldn\'t find any git commits.'
     final static String MSG_NO_TAGS = 'The Manifesto plugin couldn\'t find any version tags. You can create your first tag with `git tag -a v0.1.0`.'
 
-    private final static Repository repository = new Repository('.')
+    private final Repository repository
 
-    private static getGit() { this.repository.grgitRepository }
-
-    static getVersioned() {
-       ( Version.hasRepo && Version.hasCommits && Version.hasTags )
+    Version() {
+        repository = new Repository('.')
+    }
+    
+    private Version(Repository repository) {
+        this.repository = repository
     }
 
-    static getVersion() {
-        if ( !Version.versioned ) { return null }
-        String description = Version.git?.describe()
+    Boolean getVersioned() {
+       ( repository.exists && repository.has_commits && repository.has_tags )
+    }
+
+    String getVersion() {
+        if ( !this.versioned ) { return null }
+        String description = repository?.describe
         description.startsWith('v') ? description[1..-1] : description
     }
 
-    static getImplementation() { Version.version ?: '' }
-    static getSpecification() { implementation?.split(/-\d/)[0] ?: '' }
+    String getImplementation() { this.version ?: '' }
 
-    static getWarningText() {
-        if ( !Version.hasRepo ) { return MSG_NO_REPO }
-        if ( !Version.hasCommits ) { return MSG_NO_COMMITS }
-        if ( !Version.hasTags ) { return MSG_NO_TAGS }
+    String getSpecification() { implementation?.split(/-\d/)[0] ?: '' }
+
+    String getWarningText() {
+        if ( !repository.exists ) { return MSG_NO_REPO }
+        if ( !repository.has_commits ) { return MSG_NO_COMMITS }
+        if ( !repository.has_tags ) { return MSG_NO_TAGS }
     }
 
-    private static getHasRepo() { ( Version.git != null ) }
-
-    private static getHasCommits() {
-        try {
-          Version.git.log(maxCommits: 1)
-          return true
-        } catch (GrgitException) {
-          return false
-        }
-    }
-
-    private static getHasTags() { ( !Version.git.tag.list().isEmpty() ) }
 }

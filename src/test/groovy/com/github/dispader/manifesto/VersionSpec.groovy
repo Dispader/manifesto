@@ -5,33 +5,45 @@ import spock.lang.*
 class VersionSpec extends Specification {
 
     def 'handles no Git repository'() {
+        given:
+            def repository = Stub(Repository) {
+                getExists() >> false
+            }
         when:
-            Version.metaClass.static.getHasRepo = { false }
+            def version = new Version(repository)
         then:
-            Version.warningText == Version.MSG_NO_REPO
-            Version.versioned == false
-            Version.version == null
+            version.warningText == Version.MSG_NO_REPO
+            version.versioned == false
+            version.version == null
     }
 
     def 'handles no Git commits'() {
+        given:
+            def repository = Stub(Repository) {
+                getExists() >> true
+                getHas_commits() >> false
+            }
         when:
-            Version.metaClass.static.getHasRepo = { true }
-            Version.metaClass.static.getHasCommits = { false }
+            def version = new Version(repository)
         then:
-            Version.warningText == Version.MSG_NO_COMMITS
-            Version.versioned == false
-            Version.version == null
+            version.warningText == Version.MSG_NO_COMMITS
+            version.versioned == false
+            version.version == null
     }
 
     def 'handles no Git tags'() {
+        given:
+            def repository = Stub(Repository) {
+                getExists() >> true
+                getHas_commits() >> true
+                getHas_tags() >> false
+            }
         when:
-            Version.metaClass.static.getHasRepo = { true }
-            Version.metaClass.static.getHasCommits = { true }
-            Version.metaClass.static.getHasTags = { false }
+            def version = new Version(repository)
         then:
-            Version.warningText == Version.MSG_NO_TAGS
-            Version.versioned == false
-            Version.version == null
+            version.warningText == Version.MSG_NO_TAGS
+            version.versioned == false
+            version.version == null
     }
 
 }

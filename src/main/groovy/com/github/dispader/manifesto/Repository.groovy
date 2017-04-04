@@ -14,13 +14,9 @@ class Repository {
         this.dir = directory
     }
 
-    String getUrl() { jgitRepository().config.getString('remote', 'origin', 'url') }
+    Boolean getExists() { ( grgitRepository() != null ) }
 
-    String getDescribe() { grgitRepository().describe() }
-
-    Boolean getHasRepo() { ( grgitRepository() != null ) }
-
-    Boolean getHasCommits() {
+    Boolean getHas_commits() {
         try {
           grgitRepository().log(maxCommits: 1)
           return true
@@ -29,7 +25,11 @@ class Repository {
         }
     }
 
-    Boolean getHasTags() { ( !grgitRepository().tag.list().isEmpty() ) }
+    Boolean getHas_tags() { ( !grgitRepository().tag.list().isEmpty() ) }
+
+    String getDescribe() { grgitRepository().describe() }
+
+    String getUrl() { jgitRepository().config.getString('remote', 'origin', 'url') }
 
     private jgitRepository() { new RepositoryBuilder().findGitDir(new File(dir)).build() }
 

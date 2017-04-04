@@ -14,18 +14,19 @@ class ManifestoPlugin implements Plugin<Project> {
         project.plugins.whenPluginAdded { plugin ->
             project.tasks.findAll { ( it instanceof Jar || it instanceof War ) }.each {
                 it.manifest.with {
-                    if ( !Version.versioned ) {
+                    def version = new Version()
+                    if ( !version.versioned ) {
                         project.logger.warn "warning: ${Version.warningText}"
                         return
                     }
 
                     if ( !project.version || project.version == 'unspecified' ) {
-                        project.version = Version.version
+                        project.version = version.version
                     }
 
                     attributes('Specification-Title': project.name)
-                    if ( Version.specification ) {
-                        attributes('Specification-Version': Version.specification)
+                    if ( version.specification ) {
+                        attributes('Specification-Version': version.specification)
                     } else if ( project.version ) {
                         attributes('Specification-Version': "${project.version}")
                     }
@@ -42,8 +43,8 @@ class ManifestoPlugin implements Plugin<Project> {
                         attributes('Implementation-URL': "${project.manifesto.url}")
                     }
                     attributes('Implementation-Title': project.name)
-                    if ( Version.implementation ) {
-                        attributes('Implementation-Version': Version.implementation)
+                    if ( version.implementation ) {
+                        attributes('Implementation-Version': version.implementation)
                     } else if ( project.version ) {
                         attributes('Implementation-Version': "${project.version}")
                     }
