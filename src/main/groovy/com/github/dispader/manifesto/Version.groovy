@@ -8,16 +8,12 @@ class Version {
 
     private final Repository repository
 
-    Version() {
-        repository = new Repository('.')
-    }
-    
     private Version(Repository repository) {
         this.repository = repository
     }
 
-    Boolean getVersioned() {
-       ( repository.exists && repository.has_commits && repository.has_tags )
+    Version() {
+        repository = new Repository('.')
     }
 
     String getVersion() {
@@ -26,14 +22,22 @@ class Version {
         description.startsWith('v') ? description[1..-1] : description
     }
 
-    String getImplementation() { this.version ?: '' }
+    String getImplementation() {
+        this.version ?: ''
+    }
 
-    String getSpecification() { implementation?.split(/-\d/)[0] ?: '' }
+    String getSpecification() {
+        implementation?.split(/-\d/)[0] ?: ''
+    }
 
     String getWarningText() {
         if ( !repository.exists ) { return MSG_NO_REPO }
         if ( !repository.has_commits ) { return MSG_NO_COMMITS }
         if ( !repository.has_tags ) { return MSG_NO_TAGS }
+    }
+
+    private Boolean getVersioned() {
+       repository.exists && repository.has_commits && repository.has_tags
     }
 
 }

@@ -14,6 +14,7 @@ class ManifestoPlugin implements Plugin<Project> {
         project.plugins.whenPluginAdded { plugin ->
             project.tasks.findAll { ( it instanceof Jar || it instanceof War ) }.each {
                 it.manifest.with {
+
                     def version = new Version()
                     if ( !version ) {
                         project.logger.warn "warning: ${Version.warningText}"
