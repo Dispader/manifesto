@@ -1,17 +1,14 @@
 apply plugin: 'codenarc'
 
 codenarc {
-    toolVersion = '0.26.0'
     configFile = file('src/check/codenarc/codenarc.groovy')
+    sourceSets = [sourceSets.main]
+    ignoreFailures = true
 }
-
-tasks.withType(CodeNarc) {
+codenarcMain {
+    group = 'Code Quality'
     reports {
         xml.enabled = true
         html.enabled = true
     }
-}
-
-gradle.taskGraph.whenReady { graph ->
-    graph.allTasks.findAll { it.name ==~ /codenarc.*Test/ }*.enabled = false
 }
