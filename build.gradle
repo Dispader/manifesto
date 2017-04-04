@@ -32,6 +32,7 @@ dependencies {
         exclude module: "groovy-all"
     }
     testCompile 'cglib:cglib-nodep:3.2.4'
+    testCompile 'org.objenesis:objenesis:2.5.1'
 }
 
 testSets {

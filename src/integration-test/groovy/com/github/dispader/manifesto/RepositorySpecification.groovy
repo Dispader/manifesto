@@ -19,4 +19,14 @@ public class RepositorySpecification extends Specification {
             repository.describe ==~ /v?\d+\.\d+\.\d(-.*)?/
     }
 
+    def 'can report that a repository has commits'() {
+        expect:
+            repository.hasCommits == true
+    }
+
+    def 'can report that a repository has tags'() {
+        expect:
+            repository.hasTags == true
+    }
+
 }

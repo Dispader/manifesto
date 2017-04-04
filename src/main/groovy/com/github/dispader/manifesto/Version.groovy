@@ -6,7 +6,7 @@ class Version {
     final static String MSG_NO_COMMITS = 'The Manifesto plugin couldn\'t find any git commits.'
     final static String MSG_NO_TAGS = 'The Manifesto plugin couldn\'t find any version tags. You can create your first tag with `git tag -a v0.1.0`.'
 
-    private static getRepository() { new Repository('.') }
+    private static Repository repository = new Repository('.')
 
     private static getGit() { this.repository.grgitRepository }
 

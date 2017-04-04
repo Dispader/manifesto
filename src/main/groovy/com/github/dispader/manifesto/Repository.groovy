@@ -5,11 +5,16 @@ import org.eclipse.jgit.lib.RepositoryBuilder
 
 class Repository {
 
-    private directory
+    private final dir
 
-    Repository(String directory) { this.directory = directory }
+    Repository(String directory) {
+        if ( directory == null || !(new File(directory).isDirectory()) ) {
+            throw new IllegalArgumentException()
+        }
+        this.dir = directory
+    }
 
-    String getUrl() { jgitRepository().getConfig().getString("remote", 'origin', "url") }
+    String getUrl() { jgitRepository().config.getString('remote', 'origin', 'url') }
 
     String getDescribe() { grgitRepository().describe() }
 
@@ -26,9 +31,9 @@ class Repository {
 
     Boolean getHasTags() { ( !grgitRepository().tag.list().isEmpty() ) }
 
-    private jgitRepository() { new RepositoryBuilder().findGitDir(new File(directory)).build() }
+    private jgitRepository() { new RepositoryBuilder().findGitDir(new File(dir)).build() }
 
-    private grgitRepository() { org.ajoberstar.grgit.Grgit.open(directory) }
+    private grgitRepository() { Grgit.open(dir) }
 
     Grgit getGrgitRepository() { grgitRepository() }
 
