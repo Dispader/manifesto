@@ -1,25 +1,12 @@
 plugins {
     id 'groovy'
-    id 'com.gradle.plugin-publish' version '0.9.7'
 }
 apply from: './gradle/test-configuration.gradle'
 apply from: './gradle/code-quality.gradle'
+apply from: './gradle/publishing.gradle'
 
-version = '1.0.6'
+version = '1.0.7'
 group = 'com.github.dispader.manifesto'
-pluginBundle {
-    website = 'https://github.com/Dispader/manifesto'
-    vcsUrl = 'https://github.com/Dispader/manifesto'
-    description = 'JAr and WAr manifests made less painful.'
-    tags = ['version', 'versioning', 'git', 'describe', 'git describe']
-
-    plugins {
-        greetingsPlugin {
-            id = 'com.github.dispader.manifesto'
-            displayName = 'Manifesto plugin'
-        }
-    }
-}
 
 repositories.jcenter()
 dependencies {

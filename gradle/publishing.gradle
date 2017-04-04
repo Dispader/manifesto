@@ -1,0 +1,21 @@
+buildscript {
+    repositories.maven { url 'https://plugins.gradle.org/m2/' }
+    dependencies {
+        classpath 'com.gradle.publish:plugin-publish-plugin:0.9.7'
+    }
+}
+apply plugin: com.gradle.publish.PublishPlugin
+
+pluginBundle {
+    website = 'https://github.com/Dispader/manifesto'
+    vcsUrl = 'https://github.com/Dispader/manifesto'
+    description = 'JAr and WAr manifests made less painful.'
+    tags = ['version', 'versioning', 'git', 'describe', 'git describe']
+
+    plugins {
+        greetingsPlugin {
+            id = 'com.github.dispader.manifesto'
+            displayName = 'Manifesto plugin'
+        }
+    }
+}
