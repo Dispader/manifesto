@@ -1,4 +1,5 @@
 apply plugin: 'codenarc'
+apply plugin: 'project-report'
 
 codenarc {
     configFile = file('src/check/codenarc/codenarc.groovy')

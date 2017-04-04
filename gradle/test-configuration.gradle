@@ -1,0 +1,29 @@
+buildscript {
+    repositories.maven { url 'https://plugins.gradle.org/m2/' }
+    dependencies {
+        classpath 'gradle.plugin.org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.3.2'
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.3'
+    }
+}
+apply plugin: org.unbrokendome.gradle.plugins.testsets.TestSetsPlugin
+apply plugin: org.sonarqube.gradle.SonarQubePlugin
+
+testSets {
+    integrationTest { dirName = 'integration-test' }
+}
+integrationTest.group = 'Verification'
+integrationTest.description = 'Runs the integration tests.'
+integrationTestJar.group = ''
+tasks.withType(Test) {
+    testLogging.exceptionFormat = 'full'
+}
+check.dependsOn 'integrationTest'
+
+
+dependencies {
+    testCompile('org.spockframework:spock-core:1.0-groovy-2.4') {
+        exclude module: "groovy-all"
+    }
+    testCompile 'cglib:cglib-nodep:3.2.4'
+    testCompile 'org.objenesis:objenesis:2.5.1'
+}
