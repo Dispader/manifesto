@@ -1,6 +1,6 @@
 # Manifesto plugin
 
-[![Release](https://img.shields.io/badge/version-1.0.6-blue.svg)](https://plugins.gradle.org/plugin/com.github.dispader.manifesto) [![Build Status](https://travis-ci.org/Dispader/manifesto.svg?branch=master)](https://travis-ci.org/Dispader/manifesto) [![Dependency Status](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa) [![SonarQube](https://img.shields.io/badge/SonarQube-dashboard-green.svg)](https://sonarqube.com/dashboard?id=com.github.dispader.manifesto%3Amanifesto) [![Coverage Status](https://coveralls.io/repos/github/Dispader/manifesto/badge.svg?branch=master)](https://coveralls.io/github/Dispader/manifesto?branch=master)
+[![Release](https://img.shields.io/badge/version-1.0.8-blue.svg)](https://plugins.gradle.org/plugin/com.github.dispader.manifesto) [![Build Status](https://travis-ci.org/Dispader/manifesto.svg?branch=master)](https://travis-ci.org/Dispader/manifesto) [![Dependency Status](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/576d52ad7bc681003c4900aa) [![SonarQube](https://img.shields.io/badge/SonarQube-dashboard-green.svg)](https://sonarqube.com/dashboard?id=com.github.dispader.manifesto%3Amanifesto) [![Coverage Status](https://coveralls.io/repos/github/Dispader/manifesto/badge.svg?branch=master)](https://coveralls.io/github/Dispader/manifesto?branch=master)
 
 A plugin for the Gradle build system that sets manifest data for JAr and WAr artifacts inferred from a project's Git status.
 
@@ -14,7 +14,7 @@ Include either of the following in your build script:
 
 ```groovy
 plugins {
-    id 'com.github.dispader.manifesto' version '1.0.6'
+    id 'com.github.dispader.manifesto' version '1.0.8'
 }
 ```
 
@@ -24,7 +24,7 @@ plugins {
 buildscript {
     repositories.jcenter()
     dependencies {
-        classpath 'com.github.dispader:manifesto:1.0.6'
+        classpath 'com.github.dispader:manifesto:1.0.8'
     }
 }
 apply plugin: 'com.github.dispader.manifesto'
