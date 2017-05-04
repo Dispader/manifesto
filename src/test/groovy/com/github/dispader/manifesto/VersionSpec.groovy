@@ -43,4 +43,17 @@ class VersionSpec extends Specification {
             version.version == ''
     }
 
+    @Ignore
+    def 'can determine the remote for a repository'() {
+        given:
+            def repository = Stub(Repository) {
+                getUrl() >> 'git@github.com:Dispader/manifesto.git'
+            }
+        when:
+            def version = new Version(repository)
+        then:
+            version.url == 'http://github.com/Dispader/manifesto'
+    }
+
+
 }
