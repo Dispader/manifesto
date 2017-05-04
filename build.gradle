@@ -5,7 +5,7 @@ apply from: './gradle/test-configuration.gradle'
 apply from: './gradle/code-quality.gradle'
 apply from: './gradle/publishing.gradle'
 
-version = '1.0.8'
+version = '1.0.9'
 group = 'com.github.dispader.manifesto'
 
 repositories.jcenter()

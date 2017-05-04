@@ -30,6 +30,19 @@ class Version {
         implementation?.split(/-\d/)[0] ?: ''
     }
 
+    String getUrl() {
+        !(repository.url ==~ /git@([\w\.]+):([\w\/])+\.git/) ? '' : toUrl(repository.url)
+    }
+
+    def toUrl(String git_ssh) {
+        "http://HOST/REPO"
+        host(git_ssh)
+    }
+
+    private String host(String git_ssh) {
+        (git_ssh =~ /git@([\w\.]+):([\w\/])+\.git/)[1]
+    }
+
     String getWarningText() {
         if ( !repository.exists ) { return MSG_NO_REPO }
         if ( !repository.has_commits ) { return MSG_NO_COMMITS }
