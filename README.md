@@ -64,4 +64,8 @@ manifesto {
   * IFF no version can be determined via a `git describe`, and a Gradle `rootProject.version` can be, this value will be used instead
 * `Implementation-Timestamp` is set to the build time
 
+## Thanks!
+
+Thanks, everybody!
+
 [![semver](http://img.shields.io/:semver-2.0.0-blue.svg)](http://semver.org)
