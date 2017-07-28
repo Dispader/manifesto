@@ -12,5 +12,5 @@ repositories.jcenter()
 dependencies {
     compile gradleApi()
     compile localGroovy()
-    compile 'org.ajoberstar:grgit:1.8.0'
+    compile 'org.ajoberstar:grgit:1.9.3'
 }
