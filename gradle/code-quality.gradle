@@ -1,6 +1,7 @@
 apply plugin: 'codenarc'
 
 codenarc {
+    toolVersion = '0.27.0'
     configFile = file('src/check/codenarc/codenarc.groovy')
     sourceSets = [sourceSets.main]
     ignoreFailures = true
