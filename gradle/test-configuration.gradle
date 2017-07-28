@@ -6,7 +6,7 @@ buildscript {
     }
 }
 apply plugin: org.unbrokendome.gradle.plugins.testsets.TestSetsPlugin
-apply plugin: org.sonarqube.gradle.SonarQubePlugin
+// apply plugin: org.sonarqube.gradle.SonarQubePlugin
 
 testSets {
     integrationTest { dirName = 'integration-test' }
