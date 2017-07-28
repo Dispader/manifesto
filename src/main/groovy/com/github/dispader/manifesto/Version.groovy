@@ -35,7 +35,7 @@ class Version {
     }
 
     def toUrl(String git_ssh) {
-        "http://HOST/REPO"
+        'http://HOST/REPO'
         host(git_ssh)
     }
 
