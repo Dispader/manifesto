@@ -7,8 +7,8 @@ import org.gradle.jvm.tasks.Jar
 
 class ManifestoPlugin implements Plugin<Project> {
 
-    boolean jar_configured = false
-    boolean war_configured = false
+    static boolean jar_configured = false
+    static boolean war_configured = false
 
     void apply(Project project) {
 
