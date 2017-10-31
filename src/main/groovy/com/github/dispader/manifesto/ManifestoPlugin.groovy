@@ -7,9 +7,6 @@ import org.gradle.jvm.tasks.Jar
 
 class ManifestoPlugin implements Plugin<Project> {
 
-    static boolean jar_configured = false
-    static boolean war_configured = false
-
     void apply(Project project) {
 
         project.extensions.create('manifesto', ManifestoPluginExtension, project)
@@ -17,15 +14,6 @@ class ManifestoPlugin implements Plugin<Project> {
         project.plugins.whenPluginAdded { plugin ->
             project.tasks.findAll { ( it instanceof Jar || it instanceof War ) }.each {
                 it.manifest.with {
-
-                    if ( ( it instanceof Jar ) && jar_configured ) {
-                        project.logger.warn "warning: Jar Manifest already configured."
-                        return
-                    }
-                    if ( ( it instanceof War ) && war_configured ) {
-                        project.logger.warn "warning: War Manifest already configured."
-                        return
-                    }
 
                     def version = new Version()
                     if ( !version ) {
@@ -84,9 +72,6 @@ class ManifestoPlugin implements Plugin<Project> {
                     }
 
                     attributes('Implementation-Timestamp': new Date())
-
-                    if ( it instanceof Jar ) { jar_configured = true }
-                    if ( it instanceof War ) { war_configured = true }
                 }
             }
         }
