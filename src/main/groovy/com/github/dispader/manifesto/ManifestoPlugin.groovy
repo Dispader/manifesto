@@ -2,7 +2,6 @@ package com.github.dispader.manifesto
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.tasks.bundling.War
 import org.gradle.jvm.tasks.Jar
 
 class ManifestoPlugin implements Plugin<Project> {
@@ -12,7 +11,7 @@ class ManifestoPlugin implements Plugin<Project> {
         project.extensions.create('manifesto', ManifestoPluginExtension, project)
 
         project.plugins.whenPluginAdded { plugin ->
-            project.tasks.findAll { ( it instanceof Jar || it instanceof War ) }.each {
+            project.tasks.withType(Jar).each {
                 it.manifest.with {
 
                     def version = new Version()
