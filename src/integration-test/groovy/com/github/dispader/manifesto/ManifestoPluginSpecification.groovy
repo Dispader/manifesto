@@ -28,7 +28,7 @@ class ManifestoPluginSpecification extends Specification {
             'Specification-Title'      | 'test'
             'Specification-Version'    | /\d+\.\d+\.\d+/
             'Implementation-Title'     | 'test'
-            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
+            'Implementation-Version'   | /v?\d+\.\d+\.\d+(-\d+)?(-.*)?/
             'Implementation-Timestamp' | /.+/
     }
 
@@ -45,7 +45,7 @@ class ManifestoPluginSpecification extends Specification {
             'Specification-Title'      | 'test'
             'Specification-Version'    | /\d+\.\d+\.\d+/
             'Implementation-Title'     | 'test'
-            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
+            'Implementation-Version'   | /v?\d+\.\d+\.\d+(-\d+)?(-.*)?/
             'Implementation-Timestamp' | /.+/
     }
 
@@ -62,7 +62,7 @@ class ManifestoPluginSpecification extends Specification {
             'Specification-Title'      | 'test'
             'Specification-Version'    | /\d+\.\d+\.\d+/
             'Implementation-Title'     | 'test'
-            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
+            'Implementation-Version'   | /v?\d+\.\d+\.\d+(-\d+)?(-.*)?/
             'Implementation-Timestamp' | /.+/
     }
 
@@ -79,7 +79,7 @@ class ManifestoPluginSpecification extends Specification {
             'Specification-Title'      | 'test'
             'Specification-Version'    | /\d+\.\d+\.\d+/
             'Implementation-Title'     | 'test'
-            'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
+            'Implementation-Version'   | /v?\d+\.\d+\.\d+(-\d+)?(-.*)?/
             'Implementation-Timestamp' | /.+/
     }
 
@@ -198,7 +198,7 @@ class ManifestoPluginSpecification extends Specification {
             project.pluginManager.apply 'com.github.dispader.manifesto'
             project.pluginManager.apply 'java'
         expect:
-            project.version ==~ /\d+\.\d+\.\d(-.*)?/
+            project.version ==~ /v?\d+\.\d+\.\d+(-\d+)?(-.*)?/
     }
 
 }
