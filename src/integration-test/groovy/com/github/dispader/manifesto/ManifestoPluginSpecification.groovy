@@ -26,7 +26,7 @@ class ManifestoPluginSpecification extends Specification {
             attribute                  | pattern
             'Manifest-Version'         | '1.0'
             'Specification-Title'      | 'test'
-            'Specification-Version'    | /\d+\.\d+\.\d/
+            'Specification-Version'    | /\d+\.\d+\.\d+/
             'Implementation-Title'     | 'test'
             'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
             'Implementation-Timestamp' | /.+/
@@ -43,7 +43,7 @@ class ManifestoPluginSpecification extends Specification {
             attribute                  | pattern
             'Manifest-Version'         | '1.0'
             'Specification-Title'      | 'test'
-            'Specification-Version'    | /\d+\.\d+\.\d/
+            'Specification-Version'    | /\d+\.\d+\.\d+/
             'Implementation-Title'     | 'test'
             'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
             'Implementation-Timestamp' | /.+/
@@ -60,7 +60,7 @@ class ManifestoPluginSpecification extends Specification {
             attribute                  | pattern
             'Manifest-Version'         | '1.0'
             'Specification-Title'      | 'test'
-            'Specification-Version'    | /\d+\.\d+\.\d/
+            'Specification-Version'    | /\d+\.\d+\.\d+/
             'Implementation-Title'     | 'test'
             'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
             'Implementation-Timestamp' | /.+/
@@ -77,7 +77,7 @@ class ManifestoPluginSpecification extends Specification {
             attribute                  | pattern
             'Manifest-Version'         | '1.0'
             'Specification-Title'      | 'test'
-            'Specification-Version'    | /\d+\.\d+\.\d/
+            'Specification-Version'    | /\d+\.\d+\.\d+/
             'Implementation-Title'     | 'test'
             'Implementation-Version'   | /\d+\.\d+\.\d(-.*)?/
             'Implementation-Timestamp' | /.+/
