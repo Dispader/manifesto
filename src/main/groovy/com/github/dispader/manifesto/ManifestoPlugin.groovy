@@ -23,7 +23,7 @@ class ManifestoPlugin implements Plugin<Project> {
                     if ( !project.version || project.version == 'unspecified' ) {
                         project.version = version.version
                     } else {
-                        project.logger.warn "warning: Manifest version not set."
+                        project.logger.warn 'warning: Manifest version not set.'
                     }
 
                     attributes('Specification-Title': project.name)
@@ -31,7 +31,7 @@ class ManifestoPlugin implements Plugin<Project> {
                     if ( project.manifesto?.vendor ) {
                         attributes('Specification-Vendor': "${project.manifesto.vendor}")
                     } else {
-                        project.logger.warn "warning: Manifest Specification-Vendor not set."
+                        project.logger.warn 'warning: Manifest Specification-Vendor not set.'
                     }
 
                     if ( version.specification ) {
@@ -39,7 +39,7 @@ class ManifestoPlugin implements Plugin<Project> {
                     } else if ( project.version ) {
                         attributes('Specification-Version': "${project.version}")
                     } else {
-                        project.logger.warn "warning: Manifest Specification-Version not set."
+                        project.logger.warn 'warning: Manifest Specification-Version not set.'
                     }
 
                     attributes('Implementation-Title': project.name)
@@ -47,19 +47,19 @@ class ManifestoPlugin implements Plugin<Project> {
                     if ( project.manifesto?.vendor ) {
                         attributes('Implementation-Vendor': "${project.manifesto.vendor}")
                     } else {
-                        project.logger.warn "warning: Manifest Implementation-Vendor not set."
+                        project.logger.warn 'warning: Manifest Implementation-Vendor not set.'
                     }
 
                     if ( project.manifesto?.vendor_id ) {
                         attributes('Implementation-Vendor-Id': "${project.manifesto.vendor_id}")
                     } else {
-                        project.logger.warn "warning: Manifest Implementation-Vendor-Id not set."
+                        project.logger.warn 'warning: Manifest Implementation-Vendor-Id not set.'
                     }
 
                     if ( project.manifesto?.url ) {
                         attributes('Implementation-URL': "${project.manifesto.url}")
                     } else {
-                        project.logger.warn "warning: Manifest Implementation-URL not set."
+                        project.logger.warn 'warning: Manifest Implementation-URL not set.'
                     }
 
                     if ( version.implementation ) {
@@ -67,7 +67,7 @@ class ManifestoPlugin implements Plugin<Project> {
                     } else if ( project.version ) {
                         attributes('Implementation-Version': "${project.version}")
                     } else {
-                        project.logger.warn "warning: Manifest Implementation-Version not set."
+                        project.logger.warn 'warning: Manifest Implementation-Version not set.'
                     }
 
                     attributes('Implementation-Timestamp': new Date())
