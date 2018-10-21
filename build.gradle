@@ -1,11 +1,12 @@
 plugins {
+    id 'java-gradle-plugin'
+    id 'com.gradle.plugin-publish' version '0.10.0'
     id 'groovy'
 }
 apply from: './gradle/test-configuration.gradle'
 apply from: './gradle/code-quality.gradle'
-apply from: './gradle/publishing.gradle'
 
-version = '1.0.12'
+version = '1.0.13'
 group = 'com.github.dispader.manifesto'
 
 sourceCompatibility = 1.8
@@ -13,7 +14,30 @@ sourceCompatibility = 1.8
 
 repositories.jcenter()
 dependencies {
-    compile gradleApi()
     compile 'org.codehaus.groovy:groovy-all:2.4.15'
     compile 'org.ajoberstar:grgit:1.9.3'
+}
+
+gradlePlugin {
+    plugins {
+        manifesto {
+            id = 'com.github.dispader.manifesto'
+            displayName = 'Manifesto plugin'
+            implementationClass = 'com.github.dispader.manifesto.ManifestoPlugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/Dispader/manifesto'
+    vcsUrl = 'https://github.com/Dispader/manifesto'
+    description = 'JAr and WAr manifests made less painful.'
+    tags = ['version', 'versioning', 'git', 'describe', 'git describe']
+
+    plugins {
+        manifesto {
+            id = 'com.github.dispader.manifesto'
+            displayName = 'Manifesto plugin'
+        }
+    }
 }
