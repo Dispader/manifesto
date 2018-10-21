@@ -18,10 +18,11 @@ task integrationTest(type: Test) {
 check.dependsOn integrationTest
 
 dependencies {
-    testCompile('org.spockframework:spock-core:1.1-groovy-2.4') {
-        exclude group: 'org.codehaus.groovy' }
-    testRuntime 'cglib:cglib-nodep:3.2.5'
-    testRuntime 'org.objenesis:objenesis:2.6'
+    testCompile('org.spockframework:spock-core:1.2-groovy-2.4') {
+        exclude group: 'org.codehaus.groovy'
+    }
+    testRuntime 'cglib:cglib-nodep:3.2.8'
+    testRuntime 'org.objenesis:objenesis:3.0.1'
 }
 
 tasks.withType(Test) {
