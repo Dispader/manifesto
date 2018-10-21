@@ -8,9 +8,12 @@ apply from: './gradle/publishing.gradle'
 version = '1.0.12'
 group = 'com.github.dispader.manifesto'
 
+sourceCompatibility = 1.8
+sourceCompatibility = 1.8
+
 repositories.jcenter()
 dependencies {
     compile gradleApi()
-    compile 'org.codehaus.groovy:groovy-all:2.4.12'
+    compile 'org.codehaus.groovy:groovy-all:2.4.15'
     compile 'org.ajoberstar:grgit:1.9.3'
 }
