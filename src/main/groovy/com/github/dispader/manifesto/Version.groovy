@@ -47,7 +47,7 @@ class Version {
         if ( !repository.exists ) { return MSG_NO_REPO }
         if ( !repository.has_commits ) { return MSG_NO_COMMITS }
         if ( !repository.has_tags ) { return MSG_NO_TAGS }
-		'There are no known Manifesto warnings.'
+        'There are no known Manifesto warnings.'
     }
 
 }
