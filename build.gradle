@@ -15,7 +15,7 @@ sourceCompatibility = 1.8
 repositories.jcenter()
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.15'
-    compile 'org.ajoberstar:grgit:1.9.3'
+    compile 'org.ajoberstar:grgit:2.3.0'
 }
 
 gradlePlugin {

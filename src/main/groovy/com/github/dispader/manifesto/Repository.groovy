@@ -35,7 +35,7 @@ class Repository {
 
     private jgitRepository() { new RepositoryBuilder().findGitDir(new File(dir)).build() }
 
-    private grgitRepository() { Grgit.open(dir) }
+    private grgitRepository() { Grgit.open(dir: dir) }
 
     Grgit getGrgitRepository() { grgitRepository() }
 
